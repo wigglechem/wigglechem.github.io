@@ -1,196 +1,402 @@
 <?xml version="1.0" encoding="utf-8"?>
-<search> 
-  
-  
-    
-    <entry>
-      <title>好久不写了</title>
-      <link href="/2018/09/26/%E5%A5%BD%E4%B9%85%E4%B8%8D%E5%86%99%E4%BA%86/"/>
-      <url>/2018/09/26/%E5%A5%BD%E4%B9%85%E4%B8%8D%E5%86%99%E4%BA%86/</url>
-      
-        <content type="html"><![CDATA[<h1 id="数组去重-直接写在数组原型链上"><a href="#数组去重-直接写在数组原型链上" class="headerlink" title="数组去重,直接写在数组原型链上"></a>数组去重,直接写在数组原型链上</h1><h3 id="根据对象的一个特性，不能有重复的属性，根据这个特性进行去重（哈希去重）"><a href="#根据对象的一个特性，不能有重复的属性，根据这个特性进行去重（哈希去重）" class="headerlink" title="根据对象的一个特性，不能有重复的属性，根据这个特性进行去重（哈希去重）"></a>根据对象的一个特性，不能有重复的属性，根据这个特性进行去重（哈希去重）</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">11</span>,<span class="number">33</span>,<span class="number">111</span>,<span class="number">33</span>,<span class="number">33</span>,<span class="number">22</span>,<span class="number">22</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">3</span>,<span class="number">3</span>,<span class="number">1</span>,<span class="string">"aaa"</span>,<span class="string">"aaa"</span>,<span class="string">"bbb"</span>]</span><br><span class="line"></span><br><span class="line"><span class="built_in">Array</span>.prototype.unique = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> obj = &#123;&#125;;</span><br><span class="line">  <span class="keyword">var</span> array = [];</span><br><span class="line">  <span class="keyword">var</span> len = <span class="keyword">this</span>.length;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>;i&lt;len;i++)&#123;</span><br><span class="line">    <span class="keyword">if</span>(!obj[<span class="keyword">this</span>[i]])&#123;</span><br><span class="line">      obj[<span class="keyword">this</span>[i]]=<span class="string">"abc"</span></span><br><span class="line">      array.push(<span class="keyword">this</span>[i]);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> array</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="写一个闭包"><a href="#写一个闭包" class="headerlink" title="写一个闭包"></a>写一个闭包</h2><h3 id="eg一个计数器"><a href="#eg一个计数器" class="headerlink" title="eg一个计数器"></a>eg一个计数器</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>) </span>&#123; </span><br><span class="line">    <span class="keyword">var</span> count = <span class="number">0</span>;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">demo</span>(<span class="params"></span>) </span>&#123; </span><br><span class="line">        count ++;</span><br><span class="line">        <span class="built_in">console</span>.log(count);</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="keyword">return</span> demo</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">var</span> counter = test()</span><br><span class="line"> counter()</span><br></pre></td></tr></table></figure><h2 id="封装一个完善的typeof-方法-可以判断数组和对象-，new-Number-显示-number-object"><a href="#封装一个完善的typeof-方法-可以判断数组和对象-，new-Number-显示-number-object" class="headerlink" title="封装一个完善的typeof()方法 可以判断数组和对象 ，new Number() 显示 number-object"></a>封装一个完善的typeof()方法 可以判断数组和对象 ，new Number() 显示 number-object</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">type</span>(<span class="params">target</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> template =&#123;</span><br><span class="line">    <span class="string">"[object Array]"</span> : <span class="string">"array"</span>,</span><br><span class="line">    <span class="string">"[object Object]"</span> : <span class="string">"object"</span>,</span><br><span class="line">    <span class="string">"[object Number]"</span> : <span class="string">"number-object"</span>,</span><br><span class="line">    <span class="string">"[object Boolean]"</span> : <span class="string">"boolean-object"</span>,</span><br><span class="line">    <span class="string">"[object String]"</span> : <span class="string">"string-object"</span></span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span>(target == <span class="literal">null</span>)&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span>(<span class="keyword">typeof</span>(target)==<span class="string">"object"</span>)&#123;</span><br><span class="line">      <span class="keyword">var</span> str = <span class="built_in">Object</span>.prototype.toString.call(target);</span><br><span class="line">      <span class="keyword">return</span> template[str];</span><br><span class="line">  &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">typeof</span>(target);</span><br><span class="line">  &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>]]></content>
-      
-      
+<search>
+  <entry>
+    <title>好久不写了</title>
+    <url>/2018/09/26/%E5%A5%BD%E4%B9%85%E4%B8%8D%E5%86%99%E4%BA%86/</url>
+    <content><![CDATA[<h1 id="数组去重-直接写在数组原型链上"><a href="#数组去重-直接写在数组原型链上" class="headerlink" title="数组去重,直接写在数组原型链上"></a>数组去重,直接写在数组原型链上</h1><h3 id="根据对象的一个特性，不能有重复的属性，根据这个特性进行去重（哈希去重）"><a href="#根据对象的一个特性，不能有重复的属性，根据这个特性进行去重（哈希去重）" class="headerlink" title="根据对象的一个特性，不能有重复的属性，根据这个特性进行去重（哈希去重）"></a>根据对象的一个特性，不能有重复的属性，根据这个特性进行去重（哈希去重）</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">11</span>,<span class="number">33</span>,<span class="number">111</span>,<span class="number">33</span>,<span class="number">33</span>,<span class="number">22</span>,<span class="number">22</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">3</span>,<span class="number">3</span>,<span class="number">1</span>,<span class="string">"aaa"</span>,<span class="string">"aaa"</span>,<span class="string">"bbb"</span>]</span><br><span class="line"></span><br><span class="line"><span class="built_in">Array</span>.prototype.unique = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> obj = &#123;&#125;;</span><br><span class="line">  <span class="keyword">var</span> array = [];</span><br><span class="line">  <span class="keyword">var</span> len = <span class="keyword">this</span>.length;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>;i&lt;len;i++)&#123;</span><br><span class="line">    <span class="keyword">if</span>(!obj[<span class="keyword">this</span>[i]])&#123;</span><br><span class="line">      obj[<span class="keyword">this</span>[i]]=<span class="string">"abc"</span></span><br><span class="line">      array.push(<span class="keyword">this</span>[i]);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> array</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="写一个闭包"><a href="#写一个闭包" class="headerlink" title="写一个闭包"></a>写一个闭包</h2><h3 id="eg一个计数器"><a href="#eg一个计数器" class="headerlink" title="eg一个计数器"></a>eg一个计数器</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>) </span>&#123; </span><br><span class="line">    <span class="keyword">var</span> count = <span class="number">0</span>;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">demo</span>(<span class="params"></span>) </span>&#123; </span><br><span class="line">        count ++;</span><br><span class="line">        <span class="built_in">console</span>.log(count);</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="keyword">return</span> demo</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">var</span> counter = test()</span><br><span class="line"> counter()</span><br></pre></td></tr></table></figure>
+
+<h2 id="封装一个完善的typeof-方法-可以判断数组和对象-，new-Number-显示-number-object"><a href="#封装一个完善的typeof-方法-可以判断数组和对象-，new-Number-显示-number-object" class="headerlink" title="封装一个完善的typeof()方法 可以判断数组和对象 ，new Number() 显示 number-object"></a>封装一个完善的typeof()方法 可以判断数组和对象 ，new Number() 显示 number-object</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">type</span>(<span class="params">target</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> template =&#123;</span><br><span class="line">    <span class="string">"[object Array]"</span> : <span class="string">"array"</span>,</span><br><span class="line">    <span class="string">"[object Object]"</span> : <span class="string">"object"</span>,</span><br><span class="line">    <span class="string">"[object Number]"</span> : <span class="string">"number-object"</span>,</span><br><span class="line">    <span class="string">"[object Boolean]"</span> : <span class="string">"boolean-object"</span>,</span><br><span class="line">    <span class="string">"[object String]"</span> : <span class="string">"string-object"</span></span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span>(target == <span class="literal">null</span>)&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span>(<span class="keyword">typeof</span>(target)==<span class="string">"object"</span>)&#123;</span><br><span class="line">      <span class="keyword">var</span> str = <span class="built_in">Object</span>.prototype.toString.call(target);</span><br><span class="line">      <span class="keyword">return</span> template[str];</span><br><span class="line">  &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">typeof</span>(target);</span><br><span class="line">  &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+
+]]></content>
       <categories>
-          
-          <category> long time no see </category>
-          
+        <category>long time no see</category>
       </categories>
-      
-      
-        <tags>
-            
-            <tag> long time no see </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>Hello World</title>
-      <link href="/2018/09/21/hello-world/"/>
-      <url>/2018/09/21/hello-world/</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-      
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>Vue三种形式实现样式绑定</title>
-      <link href="/2018/05/17/vue%E4%B8%89%E7%A7%8D%E5%BD%A2%E5%BC%8F%E5%AE%9E%E7%8E%B0%E6%A0%B7%E5%BC%8F%E7%BB%91%E5%AE%9A/"/>
-      <url>/2018/05/17/vue%E4%B8%89%E7%A7%8D%E5%BD%A2%E5%BC%8F%E5%AE%9E%E7%8E%B0%E6%A0%B7%E5%BC%8F%E7%BB%91%E5%AE%9A/</url>
-      
-        <content type="html"><![CDATA[<h1 id="Vue三种形式实现样式绑定"><a href="#Vue三种形式实现样式绑定" class="headerlink" title="Vue三种形式实现样式绑定"></a>Vue三种形式实现样式绑定</h1><h2 id="要求：-一段文字-Hello-World-点击一下变红再点击一下变黑，用Vue来实现"><a href="#要求：-一段文字-Hello-World-点击一下变红再点击一下变黑，用Vue来实现" class="headerlink" title="要求： 一段文字 Hello World 点击一下变红再点击一下变黑，用Vue来实现"></a>要求： 一段文字 Hello World 点击一下变红再点击一下变黑，用Vue来实现</h2><h2 id="方法一："><a href="#方法一：" class="headerlink" title="方法一："></a>方法一：</h2><h3 id="CSS-部分"><a href="#CSS-部分" class="headerlink" title="CSS 部分"></a>CSS 部分</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.activated</span>&#123;</span><br><span class="line">    <span class="attribute">color</span>: red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="html-部分"><a href="#html-部分" class="headerlink" title="html 部分"></a>html 部分</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">div</span> @<span class="attr">click</span>=<span class="string">"handleDivClick"</span></span></span><br><span class="line"><span class="tag">            </span></span><br><span class="line"><span class="tag">            <span class="attr">:class</span>=<span class="string">"&#123;activated: isActivated&#125;"</span></span></span><br><span class="line"><span class="tag">       &gt;</span></span><br><span class="line">       Hello World</span><br><span class="line">       <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure><h3 id="js-部分"><a href="#js-部分" class="headerlink" title="js 部分"></a>js 部分</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> vm = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">           el:<span class="string">"#app"</span>,</span><br><span class="line">           data:&#123;</span><br><span class="line">               isActivated:<span class="literal">false</span></span><br><span class="line">           &#125;,</span><br><span class="line">           methods:&#123;</span><br><span class="line">               handleDivClick:<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">                  <span class="keyword">this</span>.isActivated=!<span class="keyword">this</span>.isActivated </span><br><span class="line">               &#125;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;)</span><br></pre></td></tr></table></figure><h4 id="这是用对象来绑定的形式，设置div-class为activated，这个activated显不显示由isActivated这个变量来决定，每点击一次变量取反"><a href="#这是用对象来绑定的形式，设置div-class为activated，这个activated显不显示由isActivated这个变量来决定，每点击一次变量取反" class="headerlink" title="这是用对象来绑定的形式，设置div class为activated，这个activated显不显示由isActivated这个变量来决定，每点击一次变量取反"></a>这是用对象来绑定的形式，设置div class为activated，这个activated显不显示由isActivated这个变量来决定，每点击一次变量取反</h4><h2 id="方法二："><a href="#方法二：" class="headerlink" title="方法二："></a>方法二：</h2><h3 id="CSS-部分-1"><a href="#CSS-部分-1" class="headerlink" title="CSS 部分"></a>CSS 部分</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.activated</span>&#123;</span><br><span class="line">    <span class="attribute">color</span>: red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="html-部分-1"><a href="#html-部分-1" class="headerlink" title="html 部分"></a>html 部分</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">div</span> @<span class="attr">click</span>=<span class="string">"handleDivClick"</span></span></span><br><span class="line"><span class="tag">            </span></span><br><span class="line"><span class="tag">            <span class="attr">:class</span>=<span class="string">"[activated]"</span></span></span><br><span class="line"><span class="tag">       &gt;</span></span><br><span class="line">       Hello World</span><br><span class="line">       <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure><h3 id="js-部分-1"><a href="#js-部分-1" class="headerlink" title="js 部分"></a>js 部分</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> vm = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">           el:<span class="string">"#app"</span>,</span><br><span class="line">           data:&#123;</span><br><span class="line">               activated:<span class="string">""</span></span><br><span class="line">           &#125;,</span><br><span class="line">           methods:&#123;</span><br><span class="line">               handleDivClick:<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">                  <span class="keyword">this</span>.activated= <span class="keyword">this</span>.activated===<span class="string">"activated"</span> ? <span class="string">""</span> : <span class="string">"activated"</span>;</span><br><span class="line">               &#125;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;)</span><br></pre></td></tr></table></figure><h4 id="这是用数组的方式，先将数组设为空，点击时做判断如果没有activated这个class就加，如果没有则设为空。"><a href="#这是用数组的方式，先将数组设为空，点击时做判断如果没有activated这个class就加，如果没有则设为空。" class="headerlink" title="这是用数组的方式，先将数组设为空，点击时做判断如果没有activated这个class就加，如果没有则设为空。"></a>这是用数组的方式，先将数组设为空，点击时做判断如果没有activated这个class就加，如果没有则设为空。</h4><h2 id="方法三："><a href="#方法三：" class="headerlink" title="方法三："></a>方法三：</h2><h3 id="html-部分-2"><a href="#html-部分-2" class="headerlink" title="html 部分"></a>html 部分</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">div</span> <span class="attr">:style</span>=<span class="string">"styleObj"</span> @<span class="attr">click</span>=<span class="string">"handelDivClick"</span>&gt;</span></span><br><span class="line">       Hello World</span><br><span class="line">       <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure><h3 id="js-部分-2"><a href="#js-部分-2" class="headerlink" title="js 部分"></a>js 部分</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> vm = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">           el:<span class="string">"#app"</span>,</span><br><span class="line">           data:&#123;</span><br><span class="line">               styleObj:&#123;</span><br><span class="line">                   color:<span class="string">"black"</span></span><br><span class="line">               &#125;</span><br><span class="line">           &#125;,</span><br><span class="line">           methods:&#123;</span><br><span class="line">              handelDivClick:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">                  <span class="keyword">this</span>.styleObj.color=<span class="keyword">this</span>.styleObj.color===<span class="string">"black"</span> ? <span class="string">"red"</span>:<span class="string">"black"</span></span><br><span class="line">              &#125;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;)</span><br></pre></td></tr></table></figure><h4 id="这是用了行内样式，先将这个行内样式定义为一个对象，设置这个行内样式最初始的颜色为黑色，点击时和方法二一样进行判断，如果是黑色就变为红，如果是红色就变为黑色"><a href="#这是用了行内样式，先将这个行内样式定义为一个对象，设置这个行内样式最初始的颜色为黑色，点击时和方法二一样进行判断，如果是黑色就变为红，如果是红色就变为黑色" class="headerlink" title="这是用了行内样式，先将这个行内样式定义为一个对象，设置这个行内样式最初始的颜色为黑色，点击时和方法二一样进行判断，如果是黑色就变为红，如果是红色就变为黑色"></a>这是用了行内样式，先将这个行内样式定义为一个对象，设置这个行内样式最初始的颜色为黑色，点击时和方法二一样进行判断，如果是黑色就变为红，如果是红色就变为黑色</h4>]]></content>
-      
-      
+      <tags>
+        <tag>long time no see</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Vue三种形式实现样式绑定</title>
+    <url>/2018/05/17/vue%E4%B8%89%E7%A7%8D%E5%BD%A2%E5%BC%8F%E5%AE%9E%E7%8E%B0%E6%A0%B7%E5%BC%8F%E7%BB%91%E5%AE%9A/</url>
+    <content><![CDATA[<h1 id="Vue三种形式实现样式绑定"><a href="#Vue三种形式实现样式绑定" class="headerlink" title="Vue三种形式实现样式绑定"></a>Vue三种形式实现样式绑定</h1><h2 id="要求：-一段文字-Hello-World-点击一下变红再点击一下变黑，用Vue来实现"><a href="#要求：-一段文字-Hello-World-点击一下变红再点击一下变黑，用Vue来实现" class="headerlink" title="要求： 一段文字 Hello World 点击一下变红再点击一下变黑，用Vue来实现"></a>要求： 一段文字 Hello World 点击一下变红再点击一下变黑，用Vue来实现</h2><h2 id="方法一："><a href="#方法一：" class="headerlink" title="方法一："></a>方法一：</h2><h3 id="CSS-部分"><a href="#CSS-部分" class="headerlink" title="CSS 部分"></a>CSS 部分</h3><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.activated</span>&#123;</span><br><span class="line">    <span class="attribute">color</span>: red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="html-部分"><a href="#html-部分" class="headerlink" title="html 部分"></a>html 部分</h3><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">div</span> @<span class="attr">click</span>=<span class="string">"handleDivClick"</span></span></span><br><span class="line"><span class="tag">            </span></span><br><span class="line"><span class="tag">            <span class="attr">:class</span>=<span class="string">"&#123;activated: isActivated&#125;"</span></span></span><br><span class="line"><span class="tag">       &gt;</span></span><br><span class="line">       Hello World</span><br><span class="line">       <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="js-部分"><a href="#js-部分" class="headerlink" title="js 部分"></a>js 部分</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> vm = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">           el:<span class="string">"#app"</span>,</span><br><span class="line">           data:&#123;</span><br><span class="line">               isActivated:<span class="literal">false</span></span><br><span class="line">           &#125;,</span><br><span class="line">           methods:&#123;</span><br><span class="line">               handleDivClick:<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">                  <span class="keyword">this</span>.isActivated=!<span class="keyword">this</span>.isActivated </span><br><span class="line">               &#125;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;)</span><br></pre></td></tr></table></figure>
+<h4 id="这是用对象来绑定的形式，设置div-class为activated，这个activated显不显示由isActivated这个变量来决定，每点击一次变量取反"><a href="#这是用对象来绑定的形式，设置div-class为activated，这个activated显不显示由isActivated这个变量来决定，每点击一次变量取反" class="headerlink" title="这是用对象来绑定的形式，设置div class为activated，这个activated显不显示由isActivated这个变量来决定，每点击一次变量取反"></a>这是用对象来绑定的形式，设置div class为activated，这个activated显不显示由isActivated这个变量来决定，每点击一次变量取反</h4><h2 id="方法二："><a href="#方法二：" class="headerlink" title="方法二："></a>方法二：</h2><h3 id="CSS-部分-1"><a href="#CSS-部分-1" class="headerlink" title="CSS 部分"></a>CSS 部分</h3><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.activated</span>&#123;</span><br><span class="line">    <span class="attribute">color</span>: red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="html-部分-1"><a href="#html-部分-1" class="headerlink" title="html 部分"></a>html 部分</h3><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">div</span> @<span class="attr">click</span>=<span class="string">"handleDivClick"</span></span></span><br><span class="line"><span class="tag">            </span></span><br><span class="line"><span class="tag">            <span class="attr">:class</span>=<span class="string">"[activated]"</span></span></span><br><span class="line"><span class="tag">       &gt;</span></span><br><span class="line">       Hello World</span><br><span class="line">       <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="js-部分-1"><a href="#js-部分-1" class="headerlink" title="js 部分"></a>js 部分</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> vm = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">           el:<span class="string">"#app"</span>,</span><br><span class="line">           data:&#123;</span><br><span class="line">               activated:<span class="string">""</span></span><br><span class="line">           &#125;,</span><br><span class="line">           methods:&#123;</span><br><span class="line">               handleDivClick:<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">                  <span class="keyword">this</span>.activated= <span class="keyword">this</span>.activated===<span class="string">"activated"</span> ? <span class="string">""</span> : <span class="string">"activated"</span>;</span><br><span class="line">               &#125;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;)</span><br></pre></td></tr></table></figure>
+<h4 id="这是用数组的方式，先将数组设为空，点击时做判断如果没有activated这个class就加，如果没有则设为空。"><a href="#这是用数组的方式，先将数组设为空，点击时做判断如果没有activated这个class就加，如果没有则设为空。" class="headerlink" title="这是用数组的方式，先将数组设为空，点击时做判断如果没有activated这个class就加，如果没有则设为空。"></a>这是用数组的方式，先将数组设为空，点击时做判断如果没有activated这个class就加，如果没有则设为空。</h4><h2 id="方法三："><a href="#方法三：" class="headerlink" title="方法三："></a>方法三：</h2><h3 id="html-部分-2"><a href="#html-部分-2" class="headerlink" title="html 部分"></a>html 部分</h3><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">div</span> <span class="attr">:style</span>=<span class="string">"styleObj"</span> @<span class="attr">click</span>=<span class="string">"handelDivClick"</span>&gt;</span></span><br><span class="line">       Hello World</span><br><span class="line">       <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="js-部分-2"><a href="#js-部分-2" class="headerlink" title="js 部分"></a>js 部分</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> vm = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">           el:<span class="string">"#app"</span>,</span><br><span class="line">           data:&#123;</span><br><span class="line">               styleObj:&#123;</span><br><span class="line">                   color:<span class="string">"black"</span></span><br><span class="line">               &#125;</span><br><span class="line">           &#125;,</span><br><span class="line">           methods:&#123;</span><br><span class="line">              handelDivClick:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">                  <span class="keyword">this</span>.styleObj.color=<span class="keyword">this</span>.styleObj.color===<span class="string">"black"</span> ? <span class="string">"red"</span>:<span class="string">"black"</span></span><br><span class="line">              &#125;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;)</span><br></pre></td></tr></table></figure>
+<h4 id="这是用了行内样式，先将这个行内样式定义为一个对象，设置这个行内样式最初始的颜色为黑色，点击时和方法二一样进行判断，如果是黑色就变为红，如果是红色就变为黑色"><a href="#这是用了行内样式，先将这个行内样式定义为一个对象，设置这个行内样式最初始的颜色为黑色，点击时和方法二一样进行判断，如果是黑色就变为红，如果是红色就变为黑色" class="headerlink" title="这是用了行内样式，先将这个行内样式定义为一个对象，设置这个行内样式最初始的颜色为黑色，点击时和方法二一样进行判断，如果是黑色就变为红，如果是红色就变为黑色"></a>这是用了行内样式，先将这个行内样式定义为一个对象，设置这个行内样式最初始的颜色为黑色，点击时和方法二一样进行判断，如果是黑色就变为红，如果是红色就变为黑色</h4>]]></content>
       <categories>
-          
-          <category> Vue </category>
-          
+        <category>Vue</category>
       </categories>
-      
-      
-        <tags>
-            
-            <tag> Vue </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>初入ES6（1）</title>
-      <link href="/2018/02/15/%E5%88%9D%E5%85%A5ES6/"/>
-      <url>/2018/02/15/%E5%88%9D%E5%85%A5ES6/</url>
-      
-        <content type="html"><![CDATA[<h1 id="记-大二寒假"><a href="#记-大二寒假" class="headerlink" title="记 大二寒假"></a>记 大二寒假</h1><h2 id="学习了基于Angular-的前端框架ionic3之后，我发现不管是react，vue，都用到了ES6这套javascript最新的标准，一开始说实话我并不知道ES6具体是什么东西，是用来干什么的，我只是在耳边听说过他，但是当我用到ionic3的时候，我接触到了let，特别是箭头函数！！，set-map，字符串模版，用-去绑定，还有块级作用域等等这些概念，这些都是我过去没有听过的，而现在，我突然发现并明白了它是一个什么东西，ES6是多么的强大。我也会慢慢的再去深入理解，在写业务逻辑的时候去经常使用它们。我也强烈建议所有学前端的同学，先学好ES6再去学框架-千万千万一定要先学ES6！"><a href="#学习了基于Angular-的前端框架ionic3之后，我发现不管是react，vue，都用到了ES6这套javascript最新的标准，一开始说实话我并不知道ES6具体是什么东西，是用来干什么的，我只是在耳边听说过他，但是当我用到ionic3的时候，我接触到了let，特别是箭头函数！！，set-map，字符串模版，用-去绑定，还有块级作用域等等这些概念，这些都是我过去没有听过的，而现在，我突然发现并明白了它是一个什么东西，ES6是多么的强大。我也会慢慢的再去深入理解，在写业务逻辑的时候去经常使用它们。我也强烈建议所有学前端的同学，先学好ES6再去学框架-千万千万一定要先学ES6！" class="headerlink" title="学习了基于Angular 的前端框架ionic3之后，我发现不管是react，vue，都用到了ES6这套javascript最新的标准，一开始说实话我并不知道ES6具体是什么东西，是用来干什么的，我只是在耳边听说过他，但是当我用到ionic3的时候，我接触到了let，特别是箭头函数！！，set,map，字符串模版，用$()去绑定，还有块级作用域等等这些概念，这些都是我过去没有听过的，而现在，我突然发现并明白了它是一个什么东西，ES6是多么的强大。我也会慢慢的再去深入理解，在写业务逻辑的时候去经常使用它们。我也强烈建议所有学前端的同学，先学好ES6再去学框架!!!千万千万一定要先学ES6！"></a>学习了基于Angular 的前端框架ionic3之后，我发现不管是react，vue，都用到了ES6这套javascript最新的标准，一开始说实话我并不知道ES6具体是什么东西，是用来干什么的，我只是在耳边听说过他，但是当我用到ionic3的时候，我接触到了let，特别是箭头函数！！，set,map，字符串模版，用$()去绑定，还有块级作用域等等这些概念，这些都是我过去没有听过的，而现在，我突然发现并明白了它是一个什么东西，ES6是多么的强大。我也会慢慢的再去深入理解，在写业务逻辑的时候去经常使用它们。我也强烈建议所有学前端的同学，先学好ES6再去学框架!!!千万千万一定要先学ES6！</h2><h2 id="基本概念-let-const命令"><a href="#基本概念-let-const命令" class="headerlink" title="基本概念 let const命令"></a>基本概念 let const命令</h2><h3 id="let-命令-用来声名一个变量，和var非常类似"><a href="#let-命令-用来声名一个变量，和var非常类似" class="headerlink" title="let 命令:用来声名一个变量，和var非常类似"></a><code>let</code> 命令:用来声名一个变量，和var非常类似</h3><h3 id="使用let声明的变量，所声明的变量只能在命令所在的代码块内有效"><a href="#使用let声明的变量，所声明的变量只能在命令所在的代码块内有效" class="headerlink" title="使用let声明的变量，所声明的变量只能在命令所在的代码块内有效"></a>使用let声明的变量，所声明的变量只能在命令所在的代码块内有效</h3><h3 id="使用let命令声明的变量在域解析的时候不会被提升"><a href="#使用let命令声明的变量在域解析的时候不会被提升" class="headerlink" title="使用let命令声明的变量在域解析的时候不会被提升"></a>使用let命令声明的变量在域解析的时候不会被提升</h3><h2 id="看一个例子"><a href="#看一个例子" class="headerlink" title="看一个例子"></a>看一个例子</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">for (let i&#x3D;0;i&lt;3;i++)&#123;</span><br><span class="line"></span><br><span class="line">let i &#x3D;10;</span><br><span class="line"></span><br><span class="line">console.log(i);</span><br><span class="line">&#125;</span><br><span class="line">console.log(i);</span><br></pre></td></tr></table></figure><p>第一个答应出来的是10 </p><p>第二个报错</p><p>说明这个let只在表达式里起作用</p><h2 id="const-命令同样有上面的特点-它不能声明已有的常量或者变量，除了这些，在使用const声明常量的时候需要注意它必须要进行赋值"><a href="#const-命令同样有上面的特点-它不能声明已有的常量或者变量，除了这些，在使用const声明常量的时候需要注意它必须要进行赋值" class="headerlink" title="const 命令同样有上面的特点 它不能声明已有的常量或者变量，除了这些，在使用const声明常量的时候需要注意它必须要进行赋值"></a><code>const</code> 命令同样有上面的特点 它不能声明已有的常量或者变量，除了这些，在使用const声明常量的时候需要注意它必须要进行赋值</h2><p><code>var a;</code></p><p><code>let b;</code></p><p><code>const c;</code>  //这一条会报错</p><h2 id="对象里数据的改变"><a href="#对象里数据的改变" class="headerlink" title="对象里数据的改变"></a>对象里数据的改变</h2><p><code>const obj ={a:10};</code></p><p><code>obj.a=20;</code></p><p><code>console.log(a);</code></p><p>我们会发现对象里原来的10被覆盖，打印出来的是20</p><h2 id="数组的解析赋值"><a href="#数组的解析赋值" class="headerlink" title="数组的解析赋值"></a>数组的解析赋值</h2><p><code>let a =1;</code></p><p><code>let b =1;</code></p><p><code>let c =1;</code></p><p><code>let [a,b,c]=[1,2,3];</code></p><p><code>console.log(a,b,c)</code></p><p>它可以打印出来 1 2 3</p><h2 id="基本类型的解构赋值"><a href="#基本类型的解构赋值" class="headerlink" title="基本类型的解构赋值"></a>基本类型的解构赋值</h2><p><code>let [a,b,c,d]=&#39;1234&#39;;</code></p><p><code>console.log(a,b,c,d);</code></p><p>可以打印出1 2 3 4</p><h2 id="set-数组去重"><a href="#set-数组去重" class="headerlink" title="set 数组去重"></a>set 数组去重</h2><p>  <code>var arr=[1,2,2,3,4];</code>   //需要去重的数组</p><p>  <code>var set=new Set(arr);</code>   //{1,2,3,4}</p><p>  <code>var newArr = Array.from(set);</code></p><p>  <code>console.log(newArr);</code>  //[1,2,3,4]</p>]]></content>
-      
-      
+      <tags>
+        <tag>Vue</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>初入ES6（1）</title>
+    <url>/2018/02/15/%E5%88%9D%E5%85%A5ES6/</url>
+    <content><![CDATA[<h1 id="记-大二寒假"><a href="#记-大二寒假" class="headerlink" title="记 大二寒假"></a>记 大二寒假</h1><h2 id="学习了基于Angular-的前端框架ionic3之后，我发现不管是react，vue，都用到了ES6这套javascript最新的标准，一开始说实话我并不知道ES6具体是什么东西，是用来干什么的，我只是在耳边听说过他，但是当我用到ionic3的时候，我接触到了let，特别是箭头函数！！，set-map，字符串模版，用-去绑定，还有块级作用域等等这些概念，这些都是我过去没有听过的，而现在，我突然发现并明白了它是一个什么东西，ES6是多么的强大。我也会慢慢的再去深入理解，在写业务逻辑的时候去经常使用它们。我也强烈建议所有学前端的同学，先学好ES6再去学框架-千万千万一定要先学ES6！"><a href="#学习了基于Angular-的前端框架ionic3之后，我发现不管是react，vue，都用到了ES6这套javascript最新的标准，一开始说实话我并不知道ES6具体是什么东西，是用来干什么的，我只是在耳边听说过他，但是当我用到ionic3的时候，我接触到了let，特别是箭头函数！！，set-map，字符串模版，用-去绑定，还有块级作用域等等这些概念，这些都是我过去没有听过的，而现在，我突然发现并明白了它是一个什么东西，ES6是多么的强大。我也会慢慢的再去深入理解，在写业务逻辑的时候去经常使用它们。我也强烈建议所有学前端的同学，先学好ES6再去学框架-千万千万一定要先学ES6！" class="headerlink" title="学习了基于Angular 的前端框架ionic3之后，我发现不管是react，vue，都用到了ES6这套javascript最新的标准，一开始说实话我并不知道ES6具体是什么东西，是用来干什么的，我只是在耳边听说过他，但是当我用到ionic3的时候，我接触到了let，特别是箭头函数！！，set,map，字符串模版，用$()去绑定，还有块级作用域等等这些概念，这些都是我过去没有听过的，而现在，我突然发现并明白了它是一个什么东西，ES6是多么的强大。我也会慢慢的再去深入理解，在写业务逻辑的时候去经常使用它们。我也强烈建议所有学前端的同学，先学好ES6再去学框架!!!千万千万一定要先学ES6！"></a>学习了基于Angular 的前端框架ionic3之后，我发现不管是react，vue，都用到了ES6这套javascript最新的标准，一开始说实话我并不知道ES6具体是什么东西，是用来干什么的，我只是在耳边听说过他，但是当我用到ionic3的时候，我接触到了let，特别是箭头函数！！，set,map，字符串模版，用$()去绑定，还有块级作用域等等这些概念，这些都是我过去没有听过的，而现在，我突然发现并明白了它是一个什么东西，ES6是多么的强大。我也会慢慢的再去深入理解，在写业务逻辑的时候去经常使用它们。我也强烈建议所有学前端的同学，先学好ES6再去学框架!!!千万千万一定要先学ES6！</h2><h2 id="基本概念-let-const命令"><a href="#基本概念-let-const命令" class="headerlink" title="基本概念 let const命令"></a>基本概念 let const命令</h2><h3 id="let-命令-用来声名一个变量，和var非常类似"><a href="#let-命令-用来声名一个变量，和var非常类似" class="headerlink" title="let 命令:用来声名一个变量，和var非常类似"></a><code>let</code> 命令:用来声名一个变量，和var非常类似</h3><h3 id="使用let声明的变量，所声明的变量只能在命令所在的代码块内有效"><a href="#使用let声明的变量，所声明的变量只能在命令所在的代码块内有效" class="headerlink" title="使用let声明的变量，所声明的变量只能在命令所在的代码块内有效"></a>使用let声明的变量，所声明的变量只能在命令所在的代码块内有效</h3><h3 id="使用let命令声明的变量在域解析的时候不会被提升"><a href="#使用let命令声明的变量在域解析的时候不会被提升" class="headerlink" title="使用let命令声明的变量在域解析的时候不会被提升"></a>使用let命令声明的变量在域解析的时候不会被提升</h3><h2 id="看一个例子"><a href="#看一个例子" class="headerlink" title="看一个例子"></a>看一个例子</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">for (let i&#x3D;0;i&lt;3;i++)&#123;</span><br><span class="line"></span><br><span class="line">	let i &#x3D;10;</span><br><span class="line"></span><br><span class="line">	console.log(i);</span><br><span class="line">&#125;</span><br><span class="line">	console.log(i);</span><br></pre></td></tr></table></figure>
+<p>第一个答应出来的是10 </p>
+<p>第二个报错</p>
+<p>说明这个let只在表达式里起作用</p>
+<h2 id="const-命令同样有上面的特点-它不能声明已有的常量或者变量，除了这些，在使用const声明常量的时候需要注意它必须要进行赋值"><a href="#const-命令同样有上面的特点-它不能声明已有的常量或者变量，除了这些，在使用const声明常量的时候需要注意它必须要进行赋值" class="headerlink" title="const 命令同样有上面的特点 它不能声明已有的常量或者变量，除了这些，在使用const声明常量的时候需要注意它必须要进行赋值"></a><code>const</code> 命令同样有上面的特点 它不能声明已有的常量或者变量，除了这些，在使用const声明常量的时候需要注意它必须要进行赋值</h2><p><code>var a;</code></p>
+<p><code>let b;</code></p>
+<p><code>const c;</code>  //这一条会报错</p>
+<h2 id="对象里数据的改变"><a href="#对象里数据的改变" class="headerlink" title="对象里数据的改变"></a>对象里数据的改变</h2><p><code>const obj ={a:10};</code></p>
+<p><code>obj.a=20;</code></p>
+<p><code>console.log(a);</code></p>
+<p>我们会发现对象里原来的10被覆盖，打印出来的是20</p>
+<h2 id="数组的解析赋值"><a href="#数组的解析赋值" class="headerlink" title="数组的解析赋值"></a>数组的解析赋值</h2><p><code>let a =1;</code></p>
+<p><code>let b =1;</code></p>
+<p><code>let c =1;</code></p>
+<p><code>let [a,b,c]=[1,2,3];</code></p>
+<p><code>console.log(a,b,c)</code></p>
+<p>它可以打印出来 1 2 3</p>
+<h2 id="基本类型的解构赋值"><a href="#基本类型的解构赋值" class="headerlink" title="基本类型的解构赋值"></a>基本类型的解构赋值</h2><p><code>let [a,b,c,d]=&#39;1234&#39;;</code></p>
+<p><code>console.log(a,b,c,d);</code></p>
+<p>可以打印出1 2 3 4</p>
+<h2 id="set-数组去重"><a href="#set-数组去重" class="headerlink" title="set 数组去重"></a>set 数组去重</h2><p>  <code>var arr=[1,2,2,3,4];</code>   //需要去重的数组</p>
+<p>  <code>var set=new Set(arr);</code>   //{1,2,3,4}</p>
+<p>  <code>var newArr = Array.from(set);</code></p>
+<p>  <code>console.log(newArr);</code>  //[1,2,3,4]</p>
+]]></content>
       <categories>
-          
-          <category> ES6 </category>
-          
+        <category>ES6</category>
       </categories>
-      
-      
-        <tags>
-            
-            <tag> CSS3 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>写一些CSS3 (1)</title>
-      <link href="/2017/09/19/%E5%86%99%E4%B8%80%E4%BA%9BCSS3/"/>
-      <url>/2017/09/19/%E5%86%99%E4%B8%80%E4%BA%9BCSS3/</url>
-      
-        <content type="html"><![CDATA[<h1 id="有关于一些CSS3"><a href="#有关于一些CSS3" class="headerlink" title="有关于一些CSS3"></a>有关于一些CSS3</h1><h2 id="图片的倒影"><a href="#图片的倒影" class="headerlink" title="图片的倒影"></a>图片的倒影</h2><p><img src="/" alt="原来图片" class="lazyload" data-src="http://i2.bvimg.com/684029/4fbac8234ddc5006s.jpg"></p><p><img src="/" alt="后来图片" class="lazyload" data-src="http://i2.bvimg.com/684029/bc657e302a047899s.png"></p><p><strong>实现这样的效果</strong></p><p>代码如下</p><p><code>-webkit-box-reflect:right 0px;</code><br><code>注释：below倒影 above上下 还有可选的参数有：</code></p><p><code>right left above below 可选参数（10px）距离</code></p><h1 id="老版iphone-滑动解锁效果"><a href="#老版iphone-滑动解锁效果" class="headerlink" title="老版iphone 滑动解锁效果"></a>老版iphone 滑动解锁效果</h1><iframe height='265' scrolling='no' title='veLyYe' src='//codepen.io/wigglechem/embed/veLyYe/?height=265&theme-id=light&default-tab=html,result&embed-version=2' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/wigglechem/pen/veLyYe/' target="_blank" rel="noopener">veLyYe</a> by zhiweichen (<a href='https://codepen.io/wigglechem' target="_blank" rel="noopener">@wigglechem</a>) on <a href='https://codepen.io' target="_blank" rel="noopener">CodePen</a>.</iframe><h1 id="文字描边"><a href="#文字描边" class="headerlink" title="文字描边"></a>文字描边</h1><p><code>-webkit-text-stroke:宽度 颜色</code></p><iframe height='265' scrolling='no' title='dVMQKg' src='//codepen.io/wigglechem/embed/dVMQKg/?height=265&theme-id=light&default-tab=html,result&embed-version=2' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/wigglechem/pen/dVMQKg/' target="_blank" rel="noopener">dVMQKg</a> by zhiweichen (<a href='https://codepen.io/wigglechem' target="_blank" rel="noopener">@wigglechem</a>) on <a href='https://codepen.io' target="_blank" rel="noopener">CodePen</a>.</iframe><h1 id="文字模糊"><a href="#文字模糊" class="headerlink" title="文字模糊"></a>文字模糊</h1><p><code>text-shadow:</code><br>text-shadow: h-shadow v-shadow 模糊距离 color;</p><iframe height='265' scrolling='no' title='JrXemZ' src='//codepen.io/wigglechem/embed/JrXemZ/?height=265&theme-id=light&default-tab=html,result&embed-version=2' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/wigglechem/pen/JrXemZ/' target="_blank" rel="noopener">JrXemZ</a> by zhiweichen (<a href='https://codepen.io/wigglechem' target="_blank" rel="noopener">@wigglechem</a>) on <a href='https://codepen.io' target="_blank" rel="noopener">CodePen</a>.</iframe><h1 id="超出显示省略号"><a href="#超出显示省略号" class="headerlink" title="超出显示省略号"></a>超出显示省略号</h1><p><code>white-space:nowrap;</code></p><p><code>overflow:hidden;</code></p><p><code>text-overflow:ellipsis;</code></p><iframe height='265' scrolling='no' title='MEyzxo' src='//codepen.io/wigglechem/embed/MEyzxo/?height=265&theme-id=light&default-tab=html,result&embed-version=2' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/wigglechem/pen/MEyzxo/' target="_blank" rel="noopener">MEyzxo</a> by zhiweichen (<a href='https://codepen.io/wigglechem' target="_blank" rel="noopener">@wigglechem</a>) on <a href='https://codepen.io' target="_blank" rel="noopener">CodePen</a>.</iframe><h1 id="弹性盒模型"><a href="#弹性盒模型" class="headerlink" title="弹性盒模型"></a>弹性盒模型</h1><p>在使用弹性盒模型的时候</p><p><strong>父元素必须要加:</strong> </p><p><code>display:-webkit-box;</code></p><p><strong>-wibkit-box-origin定义盒模型的布局方向</strong></p><p><code>horizontal</code>水平显示</p><p><code>vertical</code>垂直方向</p><p>** -webkit-box-direction: reverse设置排列顺序**</p><p><code>normal</code>正序</p><p><code>reverse</code>反序</p><p>** -webkit-box-ordinal-group: 数字 设置自定义顺序**</p><p>前面先找到元素 </p><p><strong>.box div:nth-of-type(number)</strong></p><iframe height='265' scrolling='no' title='XedoNB' src='//codepen.io/wigglechem/embed/XedoNB/?height=265&theme-id=light&default-tab=html,result&embed-version=2' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/wigglechem/pen/XedoNB/' target="_blank" rel="noopener">XedoNB</a> by zhiweichen (<a href='https://codepen.io/wigglechem' target="_blank" rel="noopener">@wigglechem</a>) on <a href='https://codepen.io' target="_blank" rel="noopener">CodePen</a>.</iframe><h1 id="webkit-box-flex-定义盒子的弹性空间"><a href="#webkit-box-flex-定义盒子的弹性空间" class="headerlink" title="-webkit-box-flex 定义盒子的弹性空间"></a>-webkit-box-flex 定义盒子的弹性空间</h1><p><code>div:nth-of-type(1){-webkit-box-flex:1}</code></p><p>数字代表在盒子中占的份数 数字越大 占的比例越大<br><img src="/" alt="" class="lazyload" data-src="http://i2.bvimg.com/684029/a7496c490ba11363s.png"></p><h2 id="中间宽度固定-两侧宽度自适应"><a href="#中间宽度固定-两侧宽度自适应" class="headerlink" title="中间宽度固定 两侧宽度自适应"></a>中间宽度固定 两侧宽度自适应</h2><p><strong>这个就可以用弹性盒模型来做</strong></p><iframe height='265' scrolling='no' title='eGZbQb' src='//codepen.io/wigglechem/embed/eGZbQb/?height=265&theme-id=light&default-tab=html,result&embed-version=2' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/wigglechem/pen/eGZbQb/' target="_blank" rel="noopener">eGZbQb</a> by zhiweichen (<a href='https://codepen.io/wigglechem' target="_blank" rel="noopener">@wigglechem</a>) on <a href='https://codepen.io' target="_blank" rel="noopener">CodePen</a>.</iframe><h1 id="富裕空间管理"><a href="#富裕空间管理" class="headerlink" title="富裕空间管理"></a>富裕空间管理</h1><p><code>-webkit-box-pack</code>对富裕空间进行管理</p><p><code>-webkit-box-pack:start</code>所有元素在盒子左侧显示，富裕空间在右侧 这也是默认属性<br><img src="/" alt="显示在左侧" class="lazyload" data-src="http://i2.bvimg.com/684029/b183dc536d6d56c4s.png"></p><p><code>-webkit-box-pack:end</code>所有元素在盒子右侧显示，富裕空间在左侧<br><img src="/" alt="显示在右侧" class="lazyload" data-src="http://i2.bvimg.com/684029/97f875591f454df2s.png"></p><p><strong>一个未知宽高的块元素如何在屏幕中水平居中？</strong></p><p><code>-webkit-box-pack:center</code>所有元素在盒子中间显示，富裕空间在两侧</p><p><img src="/" alt="显示在中央" class="lazyload" data-src="http://i2.bvimg.com/684029/19b0e768c25e983as.png"></p><p><strong>一个盒子里平分富裕空间</strong><br><code>-webkit-box-pack:justify</code>所有元素平分富裕空间</p><p><img src="/" alt="平分富裕空间" class="lazyload" data-src="http://i2.bvimg.com/684029/ec49cd2617b5ba4fs.png"></p><p><strong>-webkit-box-align</strong>在垂直方向上对元素的位置进行管理</p><p><code>-webkit-box-align:star</code> 所有元素在据顶</p><p><img src="/" alt="垂直方向据顶" class="lazyload" data-src="http://i2.bvimg.com/684029/625209d1c5c5ca38s.png"></p><p><code>-webkit-box-align:end</code> 所有元素在据底<br><img src="/" alt="垂直方向据底" class="lazyload" data-src="http://i2.bvimg.com/684029/67e60ce29514c3b1s.png"></p><p><strong>一个未知宽高的块元素如何在屏幕中水平垂直显示？</strong></p><p><code>-webkit-box-pack:center</code></p><p><code>-webkit-box-align:center</code></p><p><img src="/" alt="水平垂直显示" class="lazyload" data-src="http://i2.bvimg.com/684029/c8534b8ab5ed47c1s.png"></p><h1 id="盒模型的手动拉升放大收缩"><a href="#盒模型的手动拉升放大收缩" class="headerlink" title="盒模型的手动拉升放大收缩"></a>盒模型的手动拉升放大收缩</h1><p><code>resize:both;overflow:auto;</code></p><p><strong>resize 和 overflow 一起配合使用才可以</strong></p><iframe height='265' scrolling='no' title='oGLgBR' src='//codepen.io/wigglechem/embed/oGLgBR/?height=265&theme-id=light&default-tab=html,result&embed-version=2' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/wigglechem/pen/oGLgBR/' target="_blank" rel="noopener">oGLgBR</a> by zhiweichen (<a href='https://codepen.io/wigglechem' target="_blank" rel="noopener">@wigglechem</a>) on <a href='https://codepen.io' target="_blank" rel="noopener">CodePen</a>.</iframe><h1 id="分栏-报纸的排版效果"><a href="#分栏-报纸的排版效果" class="headerlink" title="分栏 报纸的排版效果"></a>分栏 报纸的排版效果</h1><p><strong>注意：Internet Explorer 不支持 column-count 属性。</strong></p><p><code>-webkit-column-count</code>栏目列数</p><p><code>-webkit-column-width</code>栏目宽度</p><p><code>-webkit-column-rule</code>栏目间隔线</p><p><code>-webkit-column-gap</code>栏目距离</p><h2 id="间隔线样式"><a href="#间隔线样式" class="headerlink" title="间隔线样式"></a>间隔线样式</h2><p><img src="/" alt="间隔线样式" class="lazyload" data-src="http://i2.bvimg.com/684029/24f9e3f2a2578860s.png"></p><pre><code>text-indent:2em;-webkit-column-width: 200px;-webkit-column-count: 4 ;-webkit-column-gap: 30px ;-webkit-column-rule:4px </code></pre><p><img src="/" alt="分栏" class="lazyload" data-src="http://i2.bvimg.com/684029/da7d901a58cb386fs.png"></p><h1 id="transition-过度"><a href="#transition-过度" class="headerlink" title="transition 过度"></a>transition 过度</h1><p>运动时间 <code>transition-duration</code></p><p>延迟时间 <code>transition-delay</code></p><p>运动形式 </p><p><code>ease</code> 逐渐变慢 （默认值）</p><p><code>linear</code> 匀速</p><p><code>ease-in</code> 加速</p><p><code>ease-out</code> 减速</p><p><code>ease-in-out</code> 先加速后减速</p><p><code>cubic-bezier</code> 贝赛尔曲线（x1,y1,x2,y2）</p><p><a href="https://matthewlein.com/tools/ceaser" target="_blank" rel="noopener">贝勒斯曲线</a> </p>]]></content>
-      
-      
+      <tags>
+        <tag>CSS3</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>写一些CSS3 (1)</title>
+    <url>/2017/09/19/%E5%86%99%E4%B8%80%E4%BA%9BCSS3/</url>
+    <content><![CDATA[<h1 id="有关于一些CSS3"><a href="#有关于一些CSS3" class="headerlink" title="有关于一些CSS3"></a>有关于一些CSS3</h1><h2 id="图片的倒影"><a href="#图片的倒影" class="headerlink" title="图片的倒影"></a>图片的倒影</h2><p><img src="/" alt="原来图片" class="lazyload" data-src="http://i2.bvimg.com/684029/4fbac8234ddc5006s.jpg"></p>
+<p><img src="/" alt="后来图片" class="lazyload" data-src="http://i2.bvimg.com/684029/bc657e302a047899s.png"></p>
+<p><strong>实现这样的效果</strong></p>
+<p>代码如下</p>
+<p><code>-webkit-box-reflect:right 0px;</code><br><code>注释：below倒影 above上下 
+还有可选的参数有：</code></p>
+<p><code>right left above below 可选参数（10px）距离</code></p>
+<h1 id="老版iphone-滑动解锁效果"><a href="#老版iphone-滑动解锁效果" class="headerlink" title="老版iphone 滑动解锁效果"></a>老版iphone 滑动解锁效果</h1><iframe height='265' scrolling='no' title='veLyYe' src='//codepen.io/wigglechem/embed/veLyYe/?height=265&theme-id=light&default-tab=html,result&embed-version=2' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/wigglechem/pen/veLyYe/' target="_blank" rel="noopener">veLyYe</a> by zhiweichen (<a href='https://codepen.io/wigglechem' target="_blank" rel="noopener">@wigglechem</a>) on <a href='https://codepen.io' target="_blank" rel="noopener">CodePen</a>.
+</iframe>
+
+<h1 id="文字描边"><a href="#文字描边" class="headerlink" title="文字描边"></a>文字描边</h1><p><code>-webkit-text-stroke:宽度 颜色</code></p>
+<iframe height='265' scrolling='no' title='dVMQKg' src='//codepen.io/wigglechem/embed/dVMQKg/?height=265&theme-id=light&default-tab=html,result&embed-version=2' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/wigglechem/pen/dVMQKg/' target="_blank" rel="noopener">dVMQKg</a> by zhiweichen (<a href='https://codepen.io/wigglechem' target="_blank" rel="noopener">@wigglechem</a>) on <a href='https://codepen.io' target="_blank" rel="noopener">CodePen</a>.
+</iframe>
+
+<h1 id="文字模糊"><a href="#文字模糊" class="headerlink" title="文字模糊"></a>文字模糊</h1><p><code>text-shadow:</code><br>text-shadow: h-shadow v-shadow 模糊距离 color;</p>
+<iframe height='265' scrolling='no' title='JrXemZ' src='//codepen.io/wigglechem/embed/JrXemZ/?height=265&theme-id=light&default-tab=html,result&embed-version=2' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/wigglechem/pen/JrXemZ/' target="_blank" rel="noopener">JrXemZ</a> by zhiweichen (<a href='https://codepen.io/wigglechem' target="_blank" rel="noopener">@wigglechem</a>) on <a href='https://codepen.io' target="_blank" rel="noopener">CodePen</a>.
+</iframe>
+
+<h1 id="超出显示省略号"><a href="#超出显示省略号" class="headerlink" title="超出显示省略号"></a>超出显示省略号</h1><p><code>white-space:nowrap;</code></p>
+<p><code>overflow:hidden;</code></p>
+<p><code>text-overflow:ellipsis;</code></p>
+<iframe height='265' scrolling='no' title='MEyzxo' src='//codepen.io/wigglechem/embed/MEyzxo/?height=265&theme-id=light&default-tab=html,result&embed-version=2' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/wigglechem/pen/MEyzxo/' target="_blank" rel="noopener">MEyzxo</a> by zhiweichen (<a href='https://codepen.io/wigglechem' target="_blank" rel="noopener">@wigglechem</a>) on <a href='https://codepen.io' target="_blank" rel="noopener">CodePen</a>.
+</iframe>
+
+<h1 id="弹性盒模型"><a href="#弹性盒模型" class="headerlink" title="弹性盒模型"></a>弹性盒模型</h1><p>在使用弹性盒模型的时候</p>
+<p><strong>父元素必须要加:</strong> </p>
+<p><code>display:-webkit-box;</code></p>
+<p><strong>-wibkit-box-origin定义盒模型的布局方向</strong></p>
+<p><code>horizontal</code>水平显示</p>
+<p><code>vertical</code>垂直方向</p>
+<p>** -webkit-box-direction: reverse设置排列顺序**</p>
+<p><code>normal</code>正序</p>
+<p><code>reverse</code>反序</p>
+<p>** -webkit-box-ordinal-group: 数字 设置自定义顺序**</p>
+<p>前面先找到元素 </p>
+<p><strong>.box div:nth-of-type(number)</strong></p>
+<iframe height='265' scrolling='no' title='XedoNB' src='//codepen.io/wigglechem/embed/XedoNB/?height=265&theme-id=light&default-tab=html,result&embed-version=2' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/wigglechem/pen/XedoNB/' target="_blank" rel="noopener">XedoNB</a> by zhiweichen (<a href='https://codepen.io/wigglechem' target="_blank" rel="noopener">@wigglechem</a>) on <a href='https://codepen.io' target="_blank" rel="noopener">CodePen</a>.
+</iframe>
+
+<h1 id="webkit-box-flex-定义盒子的弹性空间"><a href="#webkit-box-flex-定义盒子的弹性空间" class="headerlink" title="-webkit-box-flex 定义盒子的弹性空间"></a>-webkit-box-flex 定义盒子的弹性空间</h1><p><code>div:nth-of-type(1){-webkit-box-flex:1}</code></p>
+<p>数字代表在盒子中占的份数 数字越大 占的比例越大<br><img src="/" alt="" class="lazyload" data-src="http://i2.bvimg.com/684029/a7496c490ba11363s.png"></p>
+<h2 id="中间宽度固定-两侧宽度自适应"><a href="#中间宽度固定-两侧宽度自适应" class="headerlink" title="中间宽度固定 两侧宽度自适应"></a>中间宽度固定 两侧宽度自适应</h2><p><strong>这个就可以用弹性盒模型来做</strong></p>
+<iframe height='265' scrolling='no' title='eGZbQb' src='//codepen.io/wigglechem/embed/eGZbQb/?height=265&theme-id=light&default-tab=html,result&embed-version=2' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/wigglechem/pen/eGZbQb/' target="_blank" rel="noopener">eGZbQb</a> by zhiweichen (<a href='https://codepen.io/wigglechem' target="_blank" rel="noopener">@wigglechem</a>) on <a href='https://codepen.io' target="_blank" rel="noopener">CodePen</a>.
+</iframe>
+
+<h1 id="富裕空间管理"><a href="#富裕空间管理" class="headerlink" title="富裕空间管理"></a>富裕空间管理</h1><p><code>-webkit-box-pack</code>对富裕空间进行管理</p>
+<p><code>-webkit-box-pack:start</code>所有元素在盒子左侧显示，富裕空间在右侧 这也是默认属性<br><img src="/" alt="显示在左侧" class="lazyload" data-src="http://i2.bvimg.com/684029/b183dc536d6d56c4s.png"></p>
+<p><code>-webkit-box-pack:end</code>所有元素在盒子右侧显示，富裕空间在左侧<br><img src="/" alt="显示在右侧" class="lazyload" data-src="http://i2.bvimg.com/684029/97f875591f454df2s.png"></p>
+<p><strong>一个未知宽高的块元素如何在屏幕中水平居中？</strong></p>
+<p><code>-webkit-box-pack:center</code>所有元素在盒子中间显示，富裕空间在两侧</p>
+<p><img src="/" alt="显示在中央" class="lazyload" data-src="http://i2.bvimg.com/684029/19b0e768c25e983as.png"></p>
+<p><strong>一个盒子里平分富裕空间</strong><br><code>-webkit-box-pack:justify</code>所有元素平分富裕空间</p>
+<p><img src="/" alt="平分富裕空间" class="lazyload" data-src="http://i2.bvimg.com/684029/ec49cd2617b5ba4fs.png"></p>
+<p><strong>-webkit-box-align</strong>在垂直方向上对元素的位置进行管理</p>
+<p><code>-webkit-box-align:star</code> 所有元素在据顶</p>
+<p><img src="/" alt="垂直方向据顶" class="lazyload" data-src="http://i2.bvimg.com/684029/625209d1c5c5ca38s.png"></p>
+<p><code>-webkit-box-align:end</code> 所有元素在据底<br><img src="/" alt="垂直方向据底" class="lazyload" data-src="http://i2.bvimg.com/684029/67e60ce29514c3b1s.png"></p>
+<p><strong>一个未知宽高的块元素如何在屏幕中水平垂直显示？</strong></p>
+<p><code>-webkit-box-pack:center</code></p>
+<p><code>-webkit-box-align:center</code></p>
+<p><img src="/" alt="水平垂直显示" class="lazyload" data-src="http://i2.bvimg.com/684029/c8534b8ab5ed47c1s.png"></p>
+<h1 id="盒模型的手动拉升放大收缩"><a href="#盒模型的手动拉升放大收缩" class="headerlink" title="盒模型的手动拉升放大收缩"></a>盒模型的手动拉升放大收缩</h1><p><code>resize:both;
+overflow:auto;</code></p>
+<p><strong>resize 和 overflow 一起配合使用才可以</strong></p>
+<iframe height='265' scrolling='no' title='oGLgBR' src='//codepen.io/wigglechem/embed/oGLgBR/?height=265&theme-id=light&default-tab=html,result&embed-version=2' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/wigglechem/pen/oGLgBR/' target="_blank" rel="noopener">oGLgBR</a> by zhiweichen (<a href='https://codepen.io/wigglechem' target="_blank" rel="noopener">@wigglechem</a>) on <a href='https://codepen.io' target="_blank" rel="noopener">CodePen</a>.
+</iframe>
+
+
+
+
+<h1 id="分栏-报纸的排版效果"><a href="#分栏-报纸的排版效果" class="headerlink" title="分栏 报纸的排版效果"></a>分栏 报纸的排版效果</h1><p><strong>注意：Internet Explorer 不支持 column-count 属性。</strong></p>
+<p><code>-webkit-column-count</code>栏目列数</p>
+<p><code>-webkit-column-width</code>栏目宽度</p>
+<p><code>-webkit-column-rule</code>栏目间隔线</p>
+<p><code>-webkit-column-gap</code>栏目距离</p>
+<h2 id="间隔线样式"><a href="#间隔线样式" class="headerlink" title="间隔线样式"></a>间隔线样式</h2><p><img src="/" alt="间隔线样式" class="lazyload" data-src="http://i2.bvimg.com/684029/24f9e3f2a2578860s.png"></p>
+<pre><code>text-indent:2em;
+-webkit-column-width: 200px;
+-webkit-column-count: 4 ;
+-webkit-column-gap: 30px ;
+-webkit-column-rule:4px </code></pre><p><img src="/" alt="分栏" class="lazyload" data-src="http://i2.bvimg.com/684029/da7d901a58cb386fs.png"></p>
+<h1 id="transition-过度"><a href="#transition-过度" class="headerlink" title="transition 过度"></a>transition 过度</h1><p>运动时间 <code>transition-duration</code></p>
+<p>延迟时间 <code>transition-delay</code></p>
+<p>运动形式 </p>
+<p><code>ease</code> 逐渐变慢 （默认值）</p>
+<p><code>linear</code> 匀速</p>
+<p><code>ease-in</code> 加速</p>
+<p><code>ease-out</code> 减速</p>
+<p><code>ease-in-out</code> 先加速后减速</p>
+<p><code>cubic-bezier</code> 贝赛尔曲线（x1,y1,x2,y2）</p>
+<p><a href="https://matthewlein.com/tools/ceaser" target="_blank" rel="noopener">贝勒斯曲线</a> </p>
+]]></content>
       <categories>
-          
-          <category> CSS3 </category>
-          
+        <category>CSS3</category>
       </categories>
-      
-      
-        <tags>
-            
-            <tag> CSS3 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>新学期 要学JAVA 那就写点学到的东西吧</title>
-      <link href="/2017/09/13/%E6%96%B0%E5%AD%A6%E6%9C%9F-%E8%A6%81%E5%AD%A6JAVA-%E9%82%A3%E5%B0%B1%E5%86%99%E7%82%B9%E5%AD%A6%E5%88%B0%E7%9A%84%E4%B8%9C%E8%A5%BF%E5%90%A7/"/>
-      <url>/2017/09/13/%E6%96%B0%E5%AD%A6%E6%9C%9F-%E8%A6%81%E5%AD%A6JAVA-%E9%82%A3%E5%B0%B1%E5%86%99%E7%82%B9%E5%AD%A6%E5%88%B0%E7%9A%84%E4%B8%9C%E8%A5%BF%E5%90%A7/</url>
-      
-        <content type="html"><![CDATA[<h1 id="要学JAVA-那就写点最近学到的东西吧"><a href="#要学JAVA-那就写点最近学到的东西吧" class="headerlink" title="要学JAVA 那就写点最近学到的东西吧"></a>要学JAVA 那就写点最近学到的东西吧</h1><h1 id="先说说计算机中的知识"><a href="#先说说计算机中的知识" class="headerlink" title="先说说计算机中的知识"></a>先说说计算机中的知识</h1><p>在计算机中，所有数据的运算都是采用补码进行的。</p><h1 id="在定义-long-类型时要增加标记"><a href="#在定义-long-类型时要增加标记" class="headerlink" title="在定义 long 类型时要增加标记"></a>在定义 <strong>long</strong> 类型时要增加标记</h1><p>E.G：</p><p><code>long j = 100L;</code></p><h1 id="同理在定义单精度-float浮点型数据是也要增加标记"><a href="#同理在定义单精度-float浮点型数据是也要增加标记" class="headerlink" title="同理在定义单精度 float浮点型数据是也要增加标记"></a>同理在定义单精度 <strong>float</strong>浮点型数据是也要增加标记</h1><p>E.G:</p><p><code>float f = 12.345F;</code></p><h1 id="发现了一道值得思考的题目"><a href="#发现了一道值得思考的题目" class="headerlink" title="发现了一道值得思考的题目"></a>发现了一道值得思考的题目</h1><p><code>byte b1 = 3,b2=4,b;</code></p><p><code>b= b1+b2;</code></p><p><strong>这几行代码会在编译时出现问题</strong></p><h1 id="原因：两个byte在做运算时会有类型提升，所以会有问题，将类型转化为int"><a href="#原因：两个byte在做运算时会有类型提升，所以会有问题，将类型转化为int" class="headerlink" title="原因：两个byte在做运算时会有类型提升，所以会有问题，将类型转化为int"></a>原因：两个byte在做运算时会有类型提升，所以会有问题，将类型转化为int</h1><p><code>b= 3 + 4;</code></p><p>然而在做这个运算时就不会出现问题</p><p>因为是常量，先把结果计算出来，然后再看是否在byte类型范围中。</p><h1 id="byte的范围是-128-127"><a href="#byte的范围是-128-127" class="headerlink" title="byte的范围是 -128~127"></a>byte的范围是 -128~127</h1><h1 id="关于字符串的个小例子"><a href="#关于字符串的个小例子" class="headerlink" title="关于字符串的个小例子"></a>关于字符串的个小例子</h1><p><code>System.out.println(&quot;hello&quot;+&#39;a&#39;+1);</code><br>输出的是：helloa1</p><p><code>System.out.println(&quot;a&quot;+1+&quot;hello&quot;);</code><br>输出的是：98hello</p><p>总结出一个规律：只要字符串开头 做运算 就是字符串相加</p><p>所以我又做了一些例子，比如：</p><p><code>System.out.println(&quot;5+5=&quot;+5+5);</code><br>输出的是：5+5=55</p><p><code>System.out.println(5+5+&quot;=5+5&quot;);</code><br>输出的是：10=5+5</p><hr><h1 id="s-1-amp-s-s-1-的-区别"><a href="#s-1-amp-s-s-1-的-区别" class="headerlink" title="s+=1 &amp; s=s+1 的 区别"></a>s+=1 &amp; s=s+1 的 区别</h1><p>仔细看如下代码</p><p><code>short s = 1;</code></p><p><code>s = s + 1;</code></p><p><code>System.out.println(s);</code></p><p>这段代码在编译时会出现问题</p><p>正如我刚才在上文所说的</p><p>类型提升问题 </p><p>出现精度缺失</p><p>short在做运算时会把类型提升为int</p><p>故会出现问题</p><p>然而</p><p>再看如下代码：</p><p><code>short s = 1;</code></p><p><code>s += 1;</code></p><p><code>System.out.println(s);</code></p><p>就不会出现问题 += 先进行运算 </p><hr><h1 id="发现一个看似简单又挺难的问题-———两个数值的交换"><a href="#发现一个看似简单又挺难的问题-———两个数值的交换" class="headerlink" title="发现一个看似简单又挺难的问题 ———两个数值的交换"></a>发现一个看似简单又挺难的问题 ———两个数值的交换</h1><p><code>int a = 10;</code></p><p><code>int b = 20;</code></p><p>需求：把a和b的值交换 把20赋值给a; 10 赋值给 b;</p><p><strong>方法一：</strong></p><p><code>int c = a;</code></p><p><code>a = b;</code></p><p><code>b = c;</code></p><p><code>System.out.println(&quot;a:&quot;+a+&quot;,b:&quot;+b);</code></p><p><strong>方法二：</strong> 用位异或实现</p><p><code>a = a ^ b;</code></p><p><code>b = a ^ b; // a ^ b ^ b = a</code></p><p><code>a = a ^ b; // a ^ b ^ a</code></p><p><code>System.out.println(&quot;a:&quot;+a+&quot;,b:&quot;+b);</code></p><p><strong>方法三：</strong>用变量相加的做法</p><p><code>a = a + b; //a = 30</code></p><p><code>b = a - b; // b = 10</code></p><p><code>a = a - b; // a = 20</code></p><p><code>System.out.println(&quot;a:&quot;+a+&quot;,b:&quot;+b);</code></p><p><strong>方法四：秒杀法</strong></p><p><code>b = (a+b) - (a=b); //b=30-20=10,a=20</code></p><p><code>System.out.println(&quot;a:&quot;+a+&quot;,b:&quot;+b);</code></p>]]></content>
-      
-      
+      <tags>
+        <tag>CSS3</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>新学期 要学JAVA 那就写点学到的东西吧</title>
+    <url>/2017/09/13/%E6%96%B0%E5%AD%A6%E6%9C%9F-%E8%A6%81%E5%AD%A6JAVA-%E9%82%A3%E5%B0%B1%E5%86%99%E7%82%B9%E5%AD%A6%E5%88%B0%E7%9A%84%E4%B8%9C%E8%A5%BF%E5%90%A7/</url>
+    <content><![CDATA[<h1 id="要学JAVA-那就写点最近学到的东西吧"><a href="#要学JAVA-那就写点最近学到的东西吧" class="headerlink" title="要学JAVA 那就写点最近学到的东西吧"></a>要学JAVA 那就写点最近学到的东西吧</h1><h1 id="先说说计算机中的知识"><a href="#先说说计算机中的知识" class="headerlink" title="先说说计算机中的知识"></a>先说说计算机中的知识</h1><p>在计算机中，所有数据的运算都是采用补码进行的。</p>
+<h1 id="在定义-long-类型时要增加标记"><a href="#在定义-long-类型时要增加标记" class="headerlink" title="在定义 long 类型时要增加标记"></a>在定义 <strong>long</strong> 类型时要增加标记</h1><p>E.G：</p>
+<p><code>long j = 100L;</code></p>
+<h1 id="同理在定义单精度-float浮点型数据是也要增加标记"><a href="#同理在定义单精度-float浮点型数据是也要增加标记" class="headerlink" title="同理在定义单精度 float浮点型数据是也要增加标记"></a>同理在定义单精度 <strong>float</strong>浮点型数据是也要增加标记</h1><p>E.G:</p>
+<p><code>float f = 12.345F;</code></p>
+<h1 id="发现了一道值得思考的题目"><a href="#发现了一道值得思考的题目" class="headerlink" title="发现了一道值得思考的题目"></a>发现了一道值得思考的题目</h1><p><code>byte b1 = 3,b2=4,b;</code></p>
+<p><code>b= b1+b2;</code></p>
+<p><strong>这几行代码会在编译时出现问题</strong></p>
+<h1 id="原因：两个byte在做运算时会有类型提升，所以会有问题，将类型转化为int"><a href="#原因：两个byte在做运算时会有类型提升，所以会有问题，将类型转化为int" class="headerlink" title="原因：两个byte在做运算时会有类型提升，所以会有问题，将类型转化为int"></a>原因：两个byte在做运算时会有类型提升，所以会有问题，将类型转化为int</h1><p><code>b= 3 + 4;</code></p>
+<p>然而在做这个运算时就不会出现问题</p>
+<p>因为是常量，先把结果计算出来，然后再看是否在byte类型范围中。</p>
+<h1 id="byte的范围是-128-127"><a href="#byte的范围是-128-127" class="headerlink" title="byte的范围是 -128~127"></a>byte的范围是 -128~127</h1><h1 id="关于字符串的个小例子"><a href="#关于字符串的个小例子" class="headerlink" title="关于字符串的个小例子"></a>关于字符串的个小例子</h1><p><code>System.out.println(&quot;hello&quot;+&#39;a&#39;+1);</code><br>输出的是：helloa1</p>
+<p><code>System.out.println(&quot;a&quot;+1+&quot;hello&quot;);</code><br>输出的是：98hello</p>
+<p>总结出一个规律：只要字符串开头 做运算 就是字符串相加</p>
+<p>所以我又做了一些例子，比如：</p>
+<p><code>System.out.println(&quot;5+5=&quot;+5+5);</code><br>输出的是：5+5=55</p>
+<p><code>System.out.println(5+5+&quot;=5+5&quot;);</code><br>输出的是：10=5+5</p>
+<hr>
+<h1 id="s-1-amp-s-s-1-的-区别"><a href="#s-1-amp-s-s-1-的-区别" class="headerlink" title="s+=1 &amp; s=s+1 的 区别"></a>s+=1 &amp; s=s+1 的 区别</h1><p>仔细看如下代码</p>
+<p><code>short s = 1;</code></p>
+<p><code>s = s + 1;</code></p>
+<p><code>System.out.println(s);</code></p>
+<p>这段代码在编译时会出现问题</p>
+<p>正如我刚才在上文所说的</p>
+<p>类型提升问题 </p>
+<p>出现精度缺失</p>
+<p>short在做运算时会把类型提升为int</p>
+<p>故会出现问题</p>
+<p>然而</p>
+<p>再看如下代码：</p>
+<p><code>short s = 1;</code></p>
+<p><code>s += 1;</code></p>
+<p><code>System.out.println(s);</code></p>
+<p>就不会出现问题 += 先进行运算 </p>
+<hr>
+<h1 id="发现一个看似简单又挺难的问题-———两个数值的交换"><a href="#发现一个看似简单又挺难的问题-———两个数值的交换" class="headerlink" title="发现一个看似简单又挺难的问题 ———两个数值的交换"></a>发现一个看似简单又挺难的问题 ———两个数值的交换</h1><p><code>int a = 10;</code></p>
+<p><code>int b = 20;</code></p>
+<p>需求：把a和b的值交换 把20赋值给a; 10 赋值给 b;</p>
+<p><strong>方法一：</strong></p>
+<p><code>int c = a;</code></p>
+<p><code>a = b;</code></p>
+<p><code>b = c;</code></p>
+<p><code>System.out.println(&quot;a:&quot;+a+&quot;,b:&quot;+b);</code></p>
+<p><strong>方法二：</strong> 用位异或实现</p>
+<p><code>a = a ^ b;</code></p>
+<p><code>b = a ^ b; // a ^ b ^ b = a</code></p>
+<p><code>a = a ^ b; // a ^ b ^ a</code></p>
+<p><code>System.out.println(&quot;a:&quot;+a+&quot;,b:&quot;+b);</code></p>
+<p><strong>方法三：</strong>用变量相加的做法</p>
+<p><code>a = a + b; //a = 30</code></p>
+<p><code>b = a - b; // b = 10</code></p>
+<p><code>a = a - b; // a = 20</code></p>
+<p><code>System.out.println(&quot;a:&quot;+a+&quot;,b:&quot;+b);</code></p>
+<p><strong>方法四：秒杀法</strong></p>
+<p><code>b = (a+b) - (a=b); //b=30-20=10,a=20</code></p>
+<p><code>System.out.println(&quot;a:&quot;+a+&quot;,b:&quot;+b);</code></p>
+]]></content>
       <categories>
-          
-          <category> java </category>
-          
+        <category>java</category>
       </categories>
-      
-      
-        <tags>
-            
-            <tag> java </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>html css 的tips</title>
-      <link href="/2017/09/09/html-css-%E7%9A%84tips/"/>
-      <url>/2017/09/09/html-css-%E7%9A%84tips/</url>
-      
-        <content type="html"><![CDATA[<h1 id="HTML-CSS-的一些知识"><a href="#HTML-CSS-的一些知识" class="headerlink" title="HTML CSS 的一些知识"></a>HTML CSS 的一些知识</h1><h1 id="背景定位"><a href="#背景定位" class="headerlink" title="背景定位"></a>背景定位</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">background-position:center 0;</span><br></pre></td></tr></table></figure><h1 id="滚动条变-背景不变"><a href="#滚动条变-背景不变" class="headerlink" title="滚动条变 背景不变"></a>滚动条变 背景不变</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">background-attachment:fixed;</span><br></pre></td></tr></table></figure><h1 id="边框虚线"><a href="#边框虚线" class="headerlink" title="边框虚线"></a>边框虚线</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">border:1px solid dashed;</span><br></pre></td></tr></table></figure><h1 id="密密麻麻虚线"><a href="#密密麻麻虚线" class="headerlink" title="密密麻麻虚线"></a>密密麻麻虚线</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">border:1px solid dotted;</span><br></pre></td></tr></table></figure><h1 id="如何实现一个三角形？"><a href="#如何实现一个三角形？" class="headerlink" title="如何实现一个三角形？"></a>如何实现一个三角形？</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">div&#123;</span><br><span class="line">height:0;width:0;border:10px solid white;</span><br><span class="line">border-top-color:#fff;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h1 id="关于文字"><a href="#关于文字" class="headerlink" title="关于文字"></a>关于文字</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">font-weight:bold&#x2F;normal 或者值100</span><br></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">font-style:italic (表示斜体)</span><br></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">font-size (字体大小)</span><br></pre></td></tr></table></figure><p>复合样式：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">font:bold italic 26px&#x2F;30px(行高) &quot;宋体&quot;;</span><br></pre></td></tr></table></figure><h1 id="有关文本"><a href="#有关文本" class="headerlink" title="有关文本"></a>有关文本</h1><p>color: (颜色)</p><p>text-aline (对齐方式)</p><p>text-indent:2em （缩进两个字符这里值也可以是像素px）</p><p>text-decoration 文本修饰 E.G（underline）</p><p>letter-spacing 字母间距</p><p>word-spacing 以空格为解析单位的单词间距</p><p>强制不换行 </p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">white-space:nowrap;</span><br></pre></td></tr></table></figure><h1 id="一个空格有多大？？"><a href="#一个空格有多大？？" class="headerlink" title="一个空格有多大？？"></a>一个空格有多大？？</h1><p>哈哈其实这个问题很简单，宋体字体下文字大小的一半</p><p>文字默认大小16px;</p><p>测量文字的大小时一定要从上到下！！</p><p>左右要加上缝隙</p><h1 id="margin-top-传递父级的问题-用加border解决"><a href="#margin-top-传递父级的问题-用加border解决" class="headerlink" title="margin-top 传递父级的问题 用加border解决"></a>margin-top 传递父级的问题 用加border解决</h1><h1 id="伪类的顺序"><a href="#伪类的顺序" class="headerlink" title="伪类的顺序"></a>伪类的顺序</h1><p>L V H A</p><p>未访问 是 ：link</p><p>active 是鼠标按下以后的动作</p><h1 id="还有一些tips"><a href="#还有一些tips" class="headerlink" title="还有一些tips"></a>还有一些tips</h1><p>要先用<code>section</code>再用<code>div</code></p><p><code>dl</code>自定义列表</p><p><code>dt</code>标题</p><p><code>dd</code>列表项 信息</p><iframe height='265' scrolling='no' title='jGqQON' src='//codepen.io/wigglechem/embed/jGqQON/?height=265&theme-id=light&default-tab=html,result&embed-version=2' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/wigglechem/pen/jGqQON/' target="_blank" rel="noopener">jGqQON</a> by zhiweichen (<a href='https://codepen.io/wigglechem' target="_blank" rel="noopener">@wigglechem</a>) on <a href='https://codepen.io' target="_blank" rel="noopener">CodePen</a>.</iframe><p><code>mark</code><br>记号笔标签</p><h1 id="选择器的优先级"><a href="#选择器的优先级" class="headerlink" title="选择器的优先级"></a>选择器的优先级</h1><p><strong>style&gt;ID&gt;类选择器&gt;标签选择器</strong></p><h1 id="标签初始化"><a href="#标签初始化" class="headerlink" title="标签初始化"></a>标签初始化</h1><p><strong>css reset原则：但凡是浏览器默认的样式都不要使用</strong></p><h1 id="斜体"><a href="#斜体" class="headerlink" title="斜体"></a>斜体</h1><p><code>em</code>斜体 强调 专业术语</p><p><code>i</code> 也是斜体</p><h1 id="块状与内联转换"><a href="#块状与内联转换" class="headerlink" title="块状与内联转换"></a>块状与内联转换</h1><p>块状转内联：<code>display:inline;</code></p><p>内联转块状：<code>display:block;</code></p><p>块状一行：<code>display:inline-block;</code></p><p><strong>tips:</strong>块元素一行显示；内联元素支持宽高，在没有宽度的时候，内容撑开宽度。</p><h1 id="清浮动"><a href="#清浮动" class="headerlink" title="清浮动"></a>清浮动</h1><p><code>clear:left|right|both;</code></p><p><strong>清浮动的方法：</strong><br><strong>1：加高 但是扩展性不好</strong></p><p><strong>2：父级加浮动 也不好：</strong></p><p><strong>3：加display:inline-block;和2一样</strong></p><p><strong>3:空标签清浮动 会有像素偏差 （IE6）</strong></p><p><strong>4:br清浮动 和空标签一样，有像素偏差</strong></p><p><strong>5:after伪类清浮动 (主流)</strong></p><p><code>div:after{content:&quot;&quot;;display:block;clear:both;}</code></p><h1 id="定位"><a href="#定位" class="headerlink" title="定位"></a>定位</h1><p>父级<code>relative</code>  子级<code>absolute</code></p><p>绝对定位 使文件完全脱离文档流</p><p>发生移动</p><p>固定定位：</p><p><code>position:fixed;</code></p><p>但是IE6不支持</p><p>分享；广告；通知 这些类似的东西用这个</p><h1 id="透明度"><a href="#透明度" class="headerlink" title="透明度"></a>透明度</h1><p><code>opacity:0~1;</code></p><p>父级加了，子级也透明</p><h1 id="透明度的兼容"><a href="#透明度的兼容" class="headerlink" title="透明度的兼容"></a>透明度的兼容</h1><p><code>filter:alpha(opacity:90);opacity:0.9;</code></p><p>IE下透明度（滤镜）</p><p>filter:alpha(opacity=0~100);</p><h1 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h1><p><strong>table</strong><br>表头：<code>thead</code></p><p>主题：<code>tbody</code></p><p>行：<code>tr</code></p><p>表头单元格：<code>th</code></p><p>内容单元格：<code>td</code></p><p><code>colspan</code>行合并</p><p><code>rowspan</code>列合并</p><p>table重置：css</p><p><code>th,hd{paddding:0;}</code></p><p><code>border-collapse:collapse;</code></p><p>随后在body下面<br><code>&lt;table border=&quot;1&quot;&gt;</code></p><h1 id="表单"><a href="#表单" class="headerlink" title="表单"></a>表单</h1><p>单选：<code>type=&quot;radio&quot;</code></p><p>多选：<code>type=&quot;checkbox&quot;</code></p><h1 id="label标签"><a href="#label标签" class="headerlink" title="label标签"></a>label标签</h1><p>label代替value</p><p>label for = user_name 选中的是ID</p><p><code>radio</code>默认选中 <code>checked=checked</code></p><iframe height='265' scrolling='no' title='PJNxzL' src='//codepen.io/wigglechem/embed/PJNxzL/?height=265&theme-id=light&default-tab=html,result&embed-version=2' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/wigglechem/pen/PJNxzL/' target="_blank" rel="noopener">PJNxzL</a> by zhiweichen (<a href='https://codepen.io/wigglechem' target="_blank" rel="noopener">@wigglechem</a>) on <a href='https://codepen.io' target="_blank" rel="noopener">CodePen</a>.</iframe><h1 id="margin-top-传递"><a href="#margin-top-传递" class="headerlink" title="margin-top 传递"></a>margin-top 传递</h1><p>IE6最小div高度19px</p><p>用<code>overflow:hidden</code>解决</p><p>IE6不能用<code>inline-block</code></p><p>用<code>*display:inline;zoom:1;</code>解决</p><p><strong>IE6不支持png24格式</strong></p><h1 id="提升优先级"><a href="#提升优先级" class="headerlink" title="提升优先级"></a>提升优先级</h1><iframe height='265' scrolling='no' title='yzOQyY' src='//codepen.io/wigglechem/embed/yzOQyY/?height=265&theme-id=light&default-tab=html,result&embed-version=2' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/wigglechem/pen/yzOQyY/' target="_blank" rel="noopener">yzOQyY</a> by zhiweichen (<a href='https://codepen.io/wigglechem' target="_blank" rel="noopener">@wigglechem</a>) on <a href='https://codepen.io' target="_blank" rel="noopener">CodePen</a>.</iframe><p>原先style优先级大于标签选择器 </p><p>加了<code>!important</code>优先级提升了</p><p>背景颜色变成了红色</p><h1 id="git"><a href="#git" class="headerlink" title="git"></a>git</h1><p>git 是 分布式</p><p>svn 是 集中式</p><p>工作区直接到版本库</p><p><code>git commit -a -m &quot;add drag.js&quot;</code>注释</p><p><code>git diff</code> 看工作区和暂存区差别</p><p><code>git diff --cached</code>看暂存区和版本库的对比</p><p><code>git diff master</code>看工作区和版本库的对比</p><p>从暂存区撤销回工作区<code>git reset HEAD文件名字</code></p><p>恢复到版本库 清除工作区 <code>git checkout文件名</code></p><h1 id="元素看不见"><a href="#元素看不见" class="headerlink" title="元素看不见"></a>元素看不见</h1><p><code>display:none</code> 显示无 没有 不占位</p><p><code>visibility:hidden</code>占位但是不显示</p>]]></content>
-      
-      
+      <tags>
+        <tag>java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>html css 的tips</title>
+    <url>/2017/09/09/html-css-%E7%9A%84tips/</url>
+    <content><![CDATA[<h1 id="HTML-CSS-的一些知识"><a href="#HTML-CSS-的一些知识" class="headerlink" title="HTML CSS 的一些知识"></a>HTML CSS 的一些知识</h1><h1 id="背景定位"><a href="#背景定位" class="headerlink" title="背景定位"></a>背景定位</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">background-position:center 0;</span><br></pre></td></tr></table></figure>
+
+<h1 id="滚动条变-背景不变"><a href="#滚动条变-背景不变" class="headerlink" title="滚动条变 背景不变"></a>滚动条变 背景不变</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">background-attachment:fixed;</span><br></pre></td></tr></table></figure>
+
+<h1 id="边框虚线"><a href="#边框虚线" class="headerlink" title="边框虚线"></a>边框虚线</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">border:1px solid dashed;</span><br></pre></td></tr></table></figure>
+
+<h1 id="密密麻麻虚线"><a href="#密密麻麻虚线" class="headerlink" title="密密麻麻虚线"></a>密密麻麻虚线</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">border:1px solid dotted;</span><br></pre></td></tr></table></figure>
+
+<h1 id="如何实现一个三角形？"><a href="#如何实现一个三角形？" class="headerlink" title="如何实现一个三角形？"></a>如何实现一个三角形？</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">div&#123;</span><br><span class="line">height:0;width:0;border:10px solid white;</span><br><span class="line">border-top-color:#fff;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="关于文字"><a href="#关于文字" class="headerlink" title="关于文字"></a>关于文字</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">font-weight:bold&#x2F;normal 或者值100</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">font-style:italic (表示斜体)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">font-size (字体大小)</span><br></pre></td></tr></table></figure>
+
+<p>复合样式：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">font:bold italic 26px&#x2F;30px(行高) &quot;宋体&quot;;</span><br></pre></td></tr></table></figure>
+
+<h1 id="有关文本"><a href="#有关文本" class="headerlink" title="有关文本"></a>有关文本</h1><p>color: (颜色)</p>
+<p>text-aline (对齐方式)</p>
+<p>text-indent:2em （缩进两个字符这里值也可以是像素px）</p>
+<p>text-decoration 文本修饰 E.G（underline）</p>
+<p>letter-spacing 字母间距</p>
+<p>word-spacing 以空格为解析单位的单词间距</p>
+<p>强制不换行 </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">white-space:nowrap;</span><br></pre></td></tr></table></figure>
+
+<h1 id="一个空格有多大？？"><a href="#一个空格有多大？？" class="headerlink" title="一个空格有多大？？"></a>一个空格有多大？？</h1><p>哈哈其实这个问题很简单，宋体字体下文字大小的一半</p>
+<p>文字默认大小16px;</p>
+<p>测量文字的大小时一定要从上到下！！</p>
+<p>左右要加上缝隙</p>
+<h1 id="margin-top-传递父级的问题-用加border解决"><a href="#margin-top-传递父级的问题-用加border解决" class="headerlink" title="margin-top 传递父级的问题 用加border解决"></a>margin-top 传递父级的问题 用加border解决</h1><h1 id="伪类的顺序"><a href="#伪类的顺序" class="headerlink" title="伪类的顺序"></a>伪类的顺序</h1><p>L V H A</p>
+<p>未访问 是 ：link</p>
+<p>active 是鼠标按下以后的动作</p>
+<h1 id="还有一些tips"><a href="#还有一些tips" class="headerlink" title="还有一些tips"></a>还有一些tips</h1><p>要先用<code>section</code>再用<code>div</code></p>
+<p><code>dl</code>自定义列表</p>
+<p><code>dt</code>标题</p>
+<p><code>dd</code>列表项 信息</p>
+<iframe height='265' scrolling='no' title='jGqQON' src='//codepen.io/wigglechem/embed/jGqQON/?height=265&theme-id=light&default-tab=html,result&embed-version=2' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/wigglechem/pen/jGqQON/' target="_blank" rel="noopener">jGqQON</a> by zhiweichen (<a href='https://codepen.io/wigglechem' target="_blank" rel="noopener">@wigglechem</a>) on <a href='https://codepen.io' target="_blank" rel="noopener">CodePen</a>.
+</iframe>
+
+<p><code>mark</code><br>记号笔标签</p>
+<h1 id="选择器的优先级"><a href="#选择器的优先级" class="headerlink" title="选择器的优先级"></a>选择器的优先级</h1><p><strong>style&gt;ID&gt;类选择器&gt;标签选择器</strong></p>
+<h1 id="标签初始化"><a href="#标签初始化" class="headerlink" title="标签初始化"></a>标签初始化</h1><p><strong>css reset原则：但凡是浏览器默认的样式都不要使用</strong></p>
+<h1 id="斜体"><a href="#斜体" class="headerlink" title="斜体"></a>斜体</h1><p><code>em</code>斜体 强调 专业术语</p>
+<p><code>i</code> 也是斜体</p>
+<h1 id="块状与内联转换"><a href="#块状与内联转换" class="headerlink" title="块状与内联转换"></a>块状与内联转换</h1><p>块状转内联：<code>display:inline;</code></p>
+<p>内联转块状：<code>display:block;</code></p>
+<p>块状一行：<code>display:inline-block;</code></p>
+<p><strong>tips:</strong>块元素一行显示；内联元素支持宽高，在没有宽度的时候，内容撑开宽度。</p>
+<h1 id="清浮动"><a href="#清浮动" class="headerlink" title="清浮动"></a>清浮动</h1><p><code>clear:left|right|both;</code></p>
+<p><strong>清浮动的方法：</strong><br><strong>1：加高 但是扩展性不好</strong></p>
+<p><strong>2：父级加浮动 也不好：</strong></p>
+<p><strong>3：加display:inline-block;和2一样</strong></p>
+<p><strong>3:空标签清浮动 会有像素偏差 （IE6）</strong></p>
+<p><strong>4:br清浮动 和空标签一样，有像素偏差</strong></p>
+<p><strong>5:after伪类清浮动 (主流)</strong></p>
+<p><code>div:after{
+content:&quot;&quot;;
+display:block;
+clear:both;
+}</code></p>
+<h1 id="定位"><a href="#定位" class="headerlink" title="定位"></a>定位</h1><p>父级<code>relative</code>  子级<code>absolute</code></p>
+<p>绝对定位 使文件完全脱离文档流</p>
+<p>发生移动</p>
+<p>固定定位：</p>
+<p><code>position:fixed;</code></p>
+<p>但是IE6不支持</p>
+<p>分享；广告；通知 这些类似的东西用这个</p>
+<h1 id="透明度"><a href="#透明度" class="headerlink" title="透明度"></a>透明度</h1><p><code>opacity:0~1;</code></p>
+<p>父级加了，子级也透明</p>
+<h1 id="透明度的兼容"><a href="#透明度的兼容" class="headerlink" title="透明度的兼容"></a>透明度的兼容</h1><p><code>filter:alpha(opacity:90);opacity:0.9;</code></p>
+<p>IE下透明度（滤镜）</p>
+<p>filter:alpha(opacity=0~100);</p>
+<h1 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h1><p><strong>table</strong><br>表头：<code>thead</code></p>
+<p>主题：<code>tbody</code></p>
+<p>行：<code>tr</code></p>
+<p>表头单元格：<code>th</code></p>
+<p>内容单元格：<code>td</code></p>
+<p><code>colspan</code>行合并</p>
+<p><code>rowspan</code>列合并</p>
+<p>table重置：css</p>
+<p><code>th,hd{paddding:0;}</code></p>
+<p><code>border-collapse:collapse;</code></p>
+<p>随后在body下面<br><code>&lt;table border=&quot;1&quot;&gt;</code></p>
+<h1 id="表单"><a href="#表单" class="headerlink" title="表单"></a>表单</h1><p>单选：<code>type=&quot;radio&quot;</code></p>
+<p>多选：<code>type=&quot;checkbox&quot;</code></p>
+<h1 id="label标签"><a href="#label标签" class="headerlink" title="label标签"></a>label标签</h1><p>label代替value</p>
+<p>label for = user_name 选中的是ID</p>
+<p><code>radio</code>默认选中 <code>checked=checked</code></p>
+<iframe height='265' scrolling='no' title='PJNxzL' src='//codepen.io/wigglechem/embed/PJNxzL/?height=265&theme-id=light&default-tab=html,result&embed-version=2' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/wigglechem/pen/PJNxzL/' target="_blank" rel="noopener">PJNxzL</a> by zhiweichen (<a href='https://codepen.io/wigglechem' target="_blank" rel="noopener">@wigglechem</a>) on <a href='https://codepen.io' target="_blank" rel="noopener">CodePen</a>.
+</iframe>
+
+<h1 id="margin-top-传递"><a href="#margin-top-传递" class="headerlink" title="margin-top 传递"></a>margin-top 传递</h1><p>IE6最小div高度19px</p>
+<p>用<code>overflow:hidden</code>解决</p>
+<p>IE6不能用<code>inline-block</code></p>
+<p>用<code>*display:inline;zoom:1;</code>解决</p>
+<p><strong>IE6不支持png24格式</strong></p>
+<h1 id="提升优先级"><a href="#提升优先级" class="headerlink" title="提升优先级"></a>提升优先级</h1><iframe height='265' scrolling='no' title='yzOQyY' src='//codepen.io/wigglechem/embed/yzOQyY/?height=265&theme-id=light&default-tab=html,result&embed-version=2' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/wigglechem/pen/yzOQyY/' target="_blank" rel="noopener">yzOQyY</a> by zhiweichen (<a href='https://codepen.io/wigglechem' target="_blank" rel="noopener">@wigglechem</a>) on <a href='https://codepen.io' target="_blank" rel="noopener">CodePen</a>.
+</iframe>
+
+<p>原先style优先级大于标签选择器 </p>
+<p>加了<code>!important</code>优先级提升了</p>
+<p>背景颜色变成了红色</p>
+<h1 id="git"><a href="#git" class="headerlink" title="git"></a>git</h1><p>git 是 分布式</p>
+<p>svn 是 集中式</p>
+<p>工作区直接到版本库</p>
+<p><code>git commit -a -m &quot;add drag.js&quot;</code>注释</p>
+<p><code>git diff</code> 看工作区和暂存区差别</p>
+<p><code>git diff --cached</code>看暂存区和版本库的对比</p>
+<p><code>git diff master</code>看工作区和版本库的对比</p>
+<p>从暂存区撤销回工作区<code>git reset HEAD文件名字</code></p>
+<p>恢复到版本库 清除工作区 <code>git checkout文件名</code></p>
+<h1 id="元素看不见"><a href="#元素看不见" class="headerlink" title="元素看不见"></a>元素看不见</h1><p><code>display:none</code> 显示无 没有 不占位</p>
+<p><code>visibility:hidden</code>占位但是不显示</p>
+]]></content>
       <categories>
-          
-          <category> html&amp; css </category>
-          
+        <category>html&amp; css</category>
       </categories>
-      
-      
-        <tags>
-            
-            <tag> html&amp;css </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>关于我的WEBSITE</title>
-      <link href="/2017/07/26/%E5%85%B3%E4%BA%8E%E6%88%91%E7%9A%84WEBSITE/"/>
-      <url>/2017/07/26/%E5%85%B3%E4%BA%8E%E6%88%91%E7%9A%84WEBSITE/</url>
-      
-        <content type="html"><![CDATA[<h1 id="wigglechem-github-io"><a href="#wigglechem-github-io" class="headerlink" title="wigglechem.github.io"></a>wigglechem.github.io</h1><p>my website </p><h2 id="我的博客是用-github-和-hexo-搭建完成的-主题用的是iissnan的next"><a href="#我的博客是用-github-和-hexo-搭建完成的-主题用的是iissnan的next" class="headerlink" title="我的博客是用 github 和 hexo 搭建完成的 主题用的是iissnan的next"></a>我的博客是用 github 和 hexo 搭建完成的 主题用的是iissnan的next</h2><h2 id="大家也可以直接访问我的域名"><a href="#大家也可以直接访问我的域名" class="headerlink" title="大家也可以直接访问我的域名"></a>大家也可以直接访问我的域名</h2><h2 id="zhiweichen-com"><a href="#zhiweichen-com" class="headerlink" title="zhiweichen.com"></a>zhiweichen.com</h2><h2 id="我的博客建立于2017年7月25日。"><a href="#我的博客建立于2017年7月25日。" class="headerlink" title="我的博客建立于2017年7月25日。"></a>我的博客建立于2017年7月25日。</h2><p>p.s 我大一的第一个暑假~~</p>]]></content>
-      
-      
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>FIRST TIME TO PUBLISH</title>
-      <link href="/2017/07/26/FIRST-TIME-TO-PUBLISH/"/>
-      <url>/2017/07/26/FIRST-TIME-TO-PUBLISH/</url>
-      
-        <content type="html"><![CDATA[<hr><h2 id="关于前端"><a href="#关于前端" class="headerlink" title="关于前端"></a>关于前端</h2><p>一行代码 </p><p>一行文字</p><p>一个效果</p><p>一个     <code>&lt;html&gt;</code></p><p>一个 <code>&lt;/html&gt;</code></p><p>有始有终</p><p>有规有矩</p><p>磨练人的严谨 磨练人的意志 催人不断学习 </p><p>这是我要学前端的理由</p><h2 id="励志"><a href="#励志" class="headerlink" title="励志"></a>励志</h2><p>There is an I in “happiness”,There is no Y in “happiness”,It’s an I</p><p>You got a dream, you gotta protect it. People can’t do something themselves,they wanna tell you you can’t do it.If you want something, go get it. Period.</p><h2 id="关于博客"><a href="#关于博客" class="headerlink" title="关于博客"></a>关于博客</h2><p>博客源码托管在<a href="https://github.com/wigglechem/wigglechem.github.io" target="_blank" rel="noopener">Github</a>，如果有任何改进意见，欢迎讨论。</p><h2 id="我的联系方式"><a href="#我的联系方式" class="headerlink" title="我的联系方式"></a>我的联系方式</h2><p><a href="mailto:wigglechem@gmail.com">EMAIL</a></p>]]></content>
-      
-      
-      
-    </entry>
-    
-    
-  
-  
+      <tags>
+        <tag>html&amp;css</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>关于我的WEBSITE</title>
+    <url>/2017/07/26/%E5%85%B3%E4%BA%8E%E6%88%91%E7%9A%84WEBSITE/</url>
+    <content><![CDATA[<h1 id="wigglechem-github-io"><a href="#wigglechem-github-io" class="headerlink" title="wigglechem.github.io"></a>wigglechem.github.io</h1><p>my website </p>
+<h2 id="我的博客是用-github-和-hexo-搭建完成的-主题用的是iissnan的next"><a href="#我的博客是用-github-和-hexo-搭建完成的-主题用的是iissnan的next" class="headerlink" title="我的博客是用 github 和 hexo 搭建完成的 主题用的是iissnan的next"></a>我的博客是用 github 和 hexo 搭建完成的 主题用的是iissnan的next</h2><h2 id="大家也可以直接访问我的域名"><a href="#大家也可以直接访问我的域名" class="headerlink" title="大家也可以直接访问我的域名"></a>大家也可以直接访问我的域名</h2><h2 id="zhiweichen-com"><a href="#zhiweichen-com" class="headerlink" title="zhiweichen.com"></a>zhiweichen.com</h2><h2 id="我的博客建立于2017年7月25日。"><a href="#我的博客建立于2017年7月25日。" class="headerlink" title="我的博客建立于2017年7月25日。"></a>我的博客建立于2017年7月25日。</h2><p>p.s 我大一的第一个暑假~~</p>
+]]></content>
+      <tags>
+        <tag>新人</tag>
+        <tag>关于我</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>FIRST TIME TO PUBLISH</title>
+    <url>/2017/07/26/FIRST-TIME-TO-PUBLISH/</url>
+    <content><![CDATA[<hr>
+<h2 id="关于前端"><a href="#关于前端" class="headerlink" title="关于前端"></a>关于前端</h2><p>一行代码 </p>
+<p>一行文字</p>
+<p>一个效果</p>
+<p>一个     <code>&lt;html&gt;</code></p>
+<p>一个 <code>&lt;/html&gt;</code></p>
+<p>有始有终</p>
+<p>有规有矩</p>
+<p>磨练人的严谨 磨练人的意志 催人不断学习 </p>
+<p>这是我要学前端的理由</p>
+<h2 id="励志"><a href="#励志" class="headerlink" title="励志"></a>励志</h2><p>There is an I in “happiness”,There is no Y in “happiness”,It’s an I</p>
+<p>You got a dream, you gotta protect it. People can’t do something themselves,they wanna tell you you can’t do it.If you want something, go get it. Period.</p>
+<h2 id="关于博客"><a href="#关于博客" class="headerlink" title="关于博客"></a>关于博客</h2><p>博客源码托管在<a href="https://github.com/wigglechem/wigglechem.github.io" target="_blank" rel="noopener">Github</a>，如果有任何改进意见，欢迎讨论。</p>
+<h2 id="我的联系方式"><a href="#我的联系方式" class="headerlink" title="我的联系方式"></a>我的联系方式</h2><p><a href="mailto:wigglechem@gmail.com">EMAIL</a></p>
+]]></content>
+  </entry>
 </search>
