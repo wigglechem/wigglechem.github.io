@@ -1,34 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<search> 
-  
-  
-    
-    <entry>
-      <title>Hello ！初次见面！</title>
-      <link href="/2020/03/19/hello-world/"/>
-      <url>/2020/03/19/hello-world/</url>
-      
-        <content type="html"><![CDATA[<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><h3 id="这是我的个人博客，上面会记录我的个人笔记和生活，我会不定期进行更新，博客由Github-Hexo-进行搭建。初次见面请多关照！"><a href="#这是我的个人博客，上面会记录我的个人笔记和生活，我会不定期进行更新，博客由Github-Hexo-进行搭建。初次见面请多关照！" class="headerlink" title="这是我的个人博客，上面会记录我的个人笔记和生活，我会不定期进行更新，博客由Github + Hexo 进行搭建。初次见面请多关照！"></a>这是我的个人博客，上面会记录我的个人笔记和生活，我会不定期进行更新，博客由Github + Hexo 进行搭建。初次见面请多关照！</h3>]]></content>
-      
-      
+<search>
+  <entry>
+    <title>Hello ！初次见面！</title>
+    <url>/2020/03/19/hello-world/</url>
+    <content><![CDATA[<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><h3 id="这是我的个人博客，上面会记录我的个人笔记和生活，我会不定期进行更新，博客由Github-Hexo-进行搭建。初次见面请多关照！"><a href="#这是我的个人博客，上面会记录我的个人笔记和生活，我会不定期进行更新，博客由Github-Hexo-进行搭建。初次见面请多关照！" class="headerlink" title="这是我的个人博客，上面会记录我的个人笔记和生活，我会不定期进行更新，博客由Github + Hexo 进行搭建。初次见面请多关照！"></a>这是我的个人博客，上面会记录我的个人笔记和生活，我会不定期进行更新，博客由Github + Hexo 进行搭建。初次见面请多关照！</h3>]]></content>
       <categories>
-          
-          <category> 萌新 </category>
-          
+        <category>萌新</category>
       </categories>
-      
-      
-        <tags>
-            
-            <tag> 新人见面 </tag>
-            
-            <tag> Hello </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-  
-  
+      <tags>
+        <tag>新人见面</tag>
+        <tag>Hello</tag>
+      </tags>
+  </entry>
 </search>
