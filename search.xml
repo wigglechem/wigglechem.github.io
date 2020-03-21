@@ -11,10 +11,10 @@
 
 ]]></content>
       <categories>
-        <category>long time no see</category>
+        <category>javascript</category>
       </categories>
       <tags>
-        <tag>long time no see</tag>
+        <tag>javascript</tag>
       </tags>
   </entry>
   <entry>
@@ -41,7 +41,7 @@
   <entry>
     <title>初入ES6（1）</title>
     <url>/2018/02/15/%E5%88%9D%E5%85%A5ES6/</url>
-    <content><![CDATA[<h1 id="记-大二寒假"><a href="#记-大二寒假" class="headerlink" title="记 大二寒假"></a>记 大二寒假</h1><h2 id="学习了基于Angular-的前端框架ionic3之后，我发现不管是react，vue，都用到了ES6这套javascript最新的标准，一开始说实话我并不知道ES6具体是什么东西，是用来干什么的，我只是在耳边听说过他，但是当我用到ionic3的时候，我接触到了let，特别是箭头函数！！，set-map，字符串模版，用-去绑定，还有块级作用域等等这些概念，这些都是我过去没有听过的，而现在，我突然发现并明白了它是一个什么东西，ES6是多么的强大。我也会慢慢的再去深入理解，在写业务逻辑的时候去经常使用它们。我也强烈建议所有学前端的同学，先学好ES6再去学框架-千万千万一定要先学ES6！"><a href="#学习了基于Angular-的前端框架ionic3之后，我发现不管是react，vue，都用到了ES6这套javascript最新的标准，一开始说实话我并不知道ES6具体是什么东西，是用来干什么的，我只是在耳边听说过他，但是当我用到ionic3的时候，我接触到了let，特别是箭头函数！！，set-map，字符串模版，用-去绑定，还有块级作用域等等这些概念，这些都是我过去没有听过的，而现在，我突然发现并明白了它是一个什么东西，ES6是多么的强大。我也会慢慢的再去深入理解，在写业务逻辑的时候去经常使用它们。我也强烈建议所有学前端的同学，先学好ES6再去学框架-千万千万一定要先学ES6！" class="headerlink" title="学习了基于Angular 的前端框架ionic3之后，我发现不管是react，vue，都用到了ES6这套javascript最新的标准，一开始说实话我并不知道ES6具体是什么东西，是用来干什么的，我只是在耳边听说过他，但是当我用到ionic3的时候，我接触到了let，特别是箭头函数！！，set,map，字符串模版，用$()去绑定，还有块级作用域等等这些概念，这些都是我过去没有听过的，而现在，我突然发现并明白了它是一个什么东西，ES6是多么的强大。我也会慢慢的再去深入理解，在写业务逻辑的时候去经常使用它们。我也强烈建议所有学前端的同学，先学好ES6再去学框架!!!千万千万一定要先学ES6！"></a>学习了基于Angular 的前端框架ionic3之后，我发现不管是react，vue，都用到了ES6这套javascript最新的标准，一开始说实话我并不知道ES6具体是什么东西，是用来干什么的，我只是在耳边听说过他，但是当我用到ionic3的时候，我接触到了let，特别是箭头函数！！，set,map，字符串模版，用$()去绑定，还有块级作用域等等这些概念，这些都是我过去没有听过的，而现在，我突然发现并明白了它是一个什么东西，ES6是多么的强大。我也会慢慢的再去深入理解，在写业务逻辑的时候去经常使用它们。我也强烈建议所有学前端的同学，先学好ES6再去学框架!!!千万千万一定要先学ES6！</h2><h2 id="基本概念-let-const命令"><a href="#基本概念-let-const命令" class="headerlink" title="基本概念 let const命令"></a>基本概念 let const命令</h2><h3 id="let-命令-用来声名一个变量，和var非常类似"><a href="#let-命令-用来声名一个变量，和var非常类似" class="headerlink" title="let 命令:用来声名一个变量，和var非常类似"></a><code>let</code> 命令:用来声名一个变量，和var非常类似</h3><h3 id="使用let声明的变量，所声明的变量只能在命令所在的代码块内有效"><a href="#使用let声明的变量，所声明的变量只能在命令所在的代码块内有效" class="headerlink" title="使用let声明的变量，所声明的变量只能在命令所在的代码块内有效"></a>使用let声明的变量，所声明的变量只能在命令所在的代码块内有效</h3><h3 id="使用let命令声明的变量在域解析的时候不会被提升"><a href="#使用let命令声明的变量在域解析的时候不会被提升" class="headerlink" title="使用let命令声明的变量在域解析的时候不会被提升"></a>使用let命令声明的变量在域解析的时候不会被提升</h3><h2 id="看一个例子"><a href="#看一个例子" class="headerlink" title="看一个例子"></a>看一个例子</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">for (let i&#x3D;0;i&lt;3;i++)&#123;</span><br><span class="line"></span><br><span class="line">	let i &#x3D;10;</span><br><span class="line"></span><br><span class="line">	console.log(i);</span><br><span class="line">&#125;</span><br><span class="line">	console.log(i);</span><br></pre></td></tr></table></figure>
+    <content><![CDATA[<h1 id="记-大二寒假"><a href="#记-大二寒假" class="headerlink" title="记 大二寒假"></a>记 大二寒假</h1><h4 id="学习了基于Angular-的前端框架ionic3之后，我发现不管是react，vue，都用到了ES6这套javascript最新的标准，一开始说实话我并不知道ES6具体是什么东西，是用来干什么的，我只是在耳边听说过他，但是当我用到ionic3的时候，我接触到了let，特别是箭头函数！！，set-map，字符串模版，用-去绑定，还有块级作用域等等这些概念，这些都是我过去没有听过的，而现在，我突然发现并明白了它是一个什么东西，ES6是多么的强大。我也会慢慢的再去深入理解，在写业务逻辑的时候去经常使用它们。我也强烈建议所有学前端的同学，先学好ES6再去学框架-千万千万一定要先学ES6！"><a href="#学习了基于Angular-的前端框架ionic3之后，我发现不管是react，vue，都用到了ES6这套javascript最新的标准，一开始说实话我并不知道ES6具体是什么东西，是用来干什么的，我只是在耳边听说过他，但是当我用到ionic3的时候，我接触到了let，特别是箭头函数！！，set-map，字符串模版，用-去绑定，还有块级作用域等等这些概念，这些都是我过去没有听过的，而现在，我突然发现并明白了它是一个什么东西，ES6是多么的强大。我也会慢慢的再去深入理解，在写业务逻辑的时候去经常使用它们。我也强烈建议所有学前端的同学，先学好ES6再去学框架-千万千万一定要先学ES6！" class="headerlink" title="学习了基于Angular 的前端框架ionic3之后，我发现不管是react，vue，都用到了ES6这套javascript最新的标准，一开始说实话我并不知道ES6具体是什么东西，是用来干什么的，我只是在耳边听说过他，但是当我用到ionic3的时候，我接触到了let，特别是箭头函数！！，set,map，字符串模版，用$()去绑定，还有块级作用域等等这些概念，这些都是我过去没有听过的，而现在，我突然发现并明白了它是一个什么东西，ES6是多么的强大。我也会慢慢的再去深入理解，在写业务逻辑的时候去经常使用它们。我也强烈建议所有学前端的同学，先学好ES6再去学框架!!!千万千万一定要先学ES6！"></a>学习了基于Angular 的前端框架ionic3之后，我发现不管是react，vue，都用到了ES6这套javascript最新的标准，一开始说实话我并不知道ES6具体是什么东西，是用来干什么的，我只是在耳边听说过他，但是当我用到ionic3的时候，我接触到了let，特别是箭头函数！！，set,map，字符串模版，用$()去绑定，还有块级作用域等等这些概念，这些都是我过去没有听过的，而现在，我突然发现并明白了它是一个什么东西，ES6是多么的强大。我也会慢慢的再去深入理解，在写业务逻辑的时候去经常使用它们。我也强烈建议所有学前端的同学，先学好ES6再去学框架!!!千万千万一定要先学ES6！</h4><h2 id="基本概念-let-const命令"><a href="#基本概念-let-const命令" class="headerlink" title="基本概念 let const命令"></a>基本概念 let const命令</h2><h3 id="let-命令-用来声名一个变量，和var非常类似"><a href="#let-命令-用来声名一个变量，和var非常类似" class="headerlink" title="let 命令:用来声名一个变量，和var非常类似"></a><code>let</code> 命令:用来声名一个变量，和var非常类似</h3><h3 id="使用let声明的变量，所声明的变量只能在命令所在的代码块内有效"><a href="#使用let声明的变量，所声明的变量只能在命令所在的代码块内有效" class="headerlink" title="使用let声明的变量，所声明的变量只能在命令所在的代码块内有效"></a>使用let声明的变量，所声明的变量只能在命令所在的代码块内有效</h3><h3 id="使用let命令声明的变量在域解析的时候不会被提升"><a href="#使用let命令声明的变量在域解析的时候不会被提升" class="headerlink" title="使用let命令声明的变量在域解析的时候不会被提升"></a>使用let命令声明的变量在域解析的时候不会被提升</h3><h2 id="看一个例子"><a href="#看一个例子" class="headerlink" title="看一个例子"></a>看一个例子</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i=<span class="number">0</span>;i&lt;<span class="number">3</span>;i++)&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">let</span> i =<span class="number">10</span>;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">console</span>.log(i);</span><br><span class="line">&#125;</span><br><span class="line">	<span class="built_in">console</span>.log(i);</span><br></pre></td></tr></table></figure>
 <p>第一个答应出来的是10 </p>
 <p>第二个报错</p>
 <p>说明这个let只在表达式里起作用</p>
@@ -76,8 +76,8 @@
   <entry>
     <title>写一些CSS3 (1)</title>
     <url>/2017/09/19/%E5%86%99%E4%B8%80%E4%BA%9BCSS3/</url>
-    <content><![CDATA[<h1 id="有关于一些CSS3"><a href="#有关于一些CSS3" class="headerlink" title="有关于一些CSS3"></a>有关于一些CSS3</h1><h2 id="图片的倒影"><a href="#图片的倒影" class="headerlink" title="图片的倒影"></a>图片的倒影</h2><p><img src="/" alt="原来图片" class="lazyload" data-src="http://i2.bvimg.com/684029/4fbac8234ddc5006s.jpg"></p>
-<p><img src="/" alt="后来图片" class="lazyload" data-src="http://i2.bvimg.com/684029/bc657e302a047899s.png"></p>
+    <content><![CDATA[<h1 id="有关于一些CSS3"><a href="#有关于一些CSS3" class="headerlink" title="有关于一些CSS3"></a>有关于一些CSS3</h1><h2 id="图片的倒影"><a href="#图片的倒影" class="headerlink" title="图片的倒影"></a>图片的倒影</h2><p><img src="/" alt="原来图片" class="lazyload" data-src="http://q7j1vi545.bkt.clouddn.com/4.jpg"></p>
+<p><img src="/" alt="后来图片" class="lazyload" data-src="http://q7j1vi545.bkt.clouddn.com/1.png"></p>
 <p><strong>实现这样的效果</strong></p>
 <p>代码如下</p>
 <p><code>-webkit-box-reflect:right 0px;</code><br><code>注释：below倒影 above上下 
@@ -116,27 +116,27 @@
 </iframe>
 
 <h1 id="webkit-box-flex-定义盒子的弹性空间"><a href="#webkit-box-flex-定义盒子的弹性空间" class="headerlink" title="-webkit-box-flex 定义盒子的弹性空间"></a>-webkit-box-flex 定义盒子的弹性空间</h1><p><code>div:nth-of-type(1){-webkit-box-flex:1}</code></p>
-<p>数字代表在盒子中占的份数 数字越大 占的比例越大<br><img src="/" alt="" class="lazyload" data-src="http://i2.bvimg.com/684029/a7496c490ba11363s.png"></p>
+<p>数字代表在盒子中占的份数 数字越大 占的比例越大<br><img src="/" alt="" class="lazyload" data-src="http://q7j1vi545.bkt.clouddn.com/%E6%8D%95%E8%8E%B7.PNG"></p>
 <h2 id="中间宽度固定-两侧宽度自适应"><a href="#中间宽度固定-两侧宽度自适应" class="headerlink" title="中间宽度固定 两侧宽度自适应"></a>中间宽度固定 两侧宽度自适应</h2><p><strong>这个就可以用弹性盒模型来做</strong></p>
 <iframe height='265' scrolling='no' title='eGZbQb' src='//codepen.io/wigglechem/embed/eGZbQb/?height=265&theme-id=light&default-tab=html,result&embed-version=2' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/wigglechem/pen/eGZbQb/' target="_blank" rel="noopener">eGZbQb</a> by zhiweichen (<a href='https://codepen.io/wigglechem' target="_blank" rel="noopener">@wigglechem</a>) on <a href='https://codepen.io' target="_blank" rel="noopener">CodePen</a>.
 </iframe>
 
 <h1 id="富裕空间管理"><a href="#富裕空间管理" class="headerlink" title="富裕空间管理"></a>富裕空间管理</h1><p><code>-webkit-box-pack</code>对富裕空间进行管理</p>
-<p><code>-webkit-box-pack:start</code>所有元素在盒子左侧显示，富裕空间在右侧 这也是默认属性<br><img src="/" alt="显示在左侧" class="lazyload" data-src="http://i2.bvimg.com/684029/b183dc536d6d56c4s.png"></p>
-<p><code>-webkit-box-pack:end</code>所有元素在盒子右侧显示，富裕空间在左侧<br><img src="/" alt="显示在右侧" class="lazyload" data-src="http://i2.bvimg.com/684029/97f875591f454df2s.png"></p>
+<p><code>-webkit-box-pack:start</code>所有元素在盒子左侧显示，富裕空间在右侧 这也是默认属性<br><img src="/" alt="显示在左侧" class="lazyload" data-src="http://q7j1vi545.bkt.clouddn.com/fykj2.PNG"></p>
+<p><code>-webkit-box-pack:end</code>所有元素在盒子右侧显示，富裕空间在左侧<br><img src="/" alt="显示在右侧" class="lazyload" data-src="http://q7j1vi545.bkt.clouddn.com/fykj1.PNG"></p>
 <p><strong>一个未知宽高的块元素如何在屏幕中水平居中？</strong></p>
 <p><code>-webkit-box-pack:center</code>所有元素在盒子中间显示，富裕空间在两侧</p>
-<p><img src="/" alt="显示在中央" class="lazyload" data-src="http://i2.bvimg.com/684029/19b0e768c25e983as.png"></p>
+<p><img src="/" alt="显示在中央" class="lazyload" data-src="http://q7j1vi545.bkt.clouddn.com/%E6%8D%95%E8%8E%B75.PNG"></p>
 <p><strong>一个盒子里平分富裕空间</strong><br><code>-webkit-box-pack:justify</code>所有元素平分富裕空间</p>
-<p><img src="/" alt="平分富裕空间" class="lazyload" data-src="http://i2.bvimg.com/684029/ec49cd2617b5ba4fs.png"></p>
+<p><img src="/" alt="平分富裕空间" class="lazyload" data-src="http://q7j1vi545.bkt.clouddn.com/%E6%8D%95%E8%8E%B75.PNG"></p>
 <p><strong>-webkit-box-align</strong>在垂直方向上对元素的位置进行管理</p>
 <p><code>-webkit-box-align:star</code> 所有元素在据顶</p>
-<p><img src="/" alt="垂直方向据顶" class="lazyload" data-src="http://i2.bvimg.com/684029/625209d1c5c5ca38s.png"></p>
-<p><code>-webkit-box-align:end</code> 所有元素在据底<br><img src="/" alt="垂直方向据底" class="lazyload" data-src="http://i2.bvimg.com/684029/67e60ce29514c3b1s.png"></p>
+<p><img src="/" alt="垂直方向据顶" class="lazyload" data-src="http://q7j1vi545.bkt.clouddn.com/%E6%8D%95%E8%8E%B76.PNG"></p>
+<p><code>-webkit-box-align:end</code> 所有元素在据底<br><img src="/" alt="垂直方向据底" class="lazyload" data-src="http://q7j1vi545.bkt.clouddn.com/%E6%8D%95%E8%8E%B77.PNG"></p>
 <p><strong>一个未知宽高的块元素如何在屏幕中水平垂直显示？</strong></p>
 <p><code>-webkit-box-pack:center</code></p>
 <p><code>-webkit-box-align:center</code></p>
-<p><img src="/" alt="水平垂直显示" class="lazyload" data-src="http://i2.bvimg.com/684029/c8534b8ab5ed47c1s.png"></p>
+<p><img src="/" alt="水平垂直显示" class="lazyload" data-src="http://q7j1vi545.bkt.clouddn.com/%E6%8D%95%E8%8E%B75.PNG"></p>
 <h1 id="盒模型的手动拉升放大收缩"><a href="#盒模型的手动拉升放大收缩" class="headerlink" title="盒模型的手动拉升放大收缩"></a>盒模型的手动拉升放大收缩</h1><p><code>resize:both;
 overflow:auto;</code></p>
 <p><strong>resize 和 overflow 一起配合使用才可以</strong></p>
@@ -151,12 +151,12 @@ overflow:auto;</code></p>
 <p><code>-webkit-column-width</code>栏目宽度</p>
 <p><code>-webkit-column-rule</code>栏目间隔线</p>
 <p><code>-webkit-column-gap</code>栏目距离</p>
-<h2 id="间隔线样式"><a href="#间隔线样式" class="headerlink" title="间隔线样式"></a>间隔线样式</h2><p><img src="/" alt="间隔线样式" class="lazyload" data-src="http://i2.bvimg.com/684029/24f9e3f2a2578860s.png"></p>
+<h2 id="间隔线样式"><a href="#间隔线样式" class="headerlink" title="间隔线样式"></a>间隔线样式</h2><p><img src="/" alt="间隔线样式" class="lazyload" data-src="http://q7j1vi545.bkt.clouddn.com/%E6%8D%95%E8%8E%B79.PNG"></p>
 <pre><code>text-indent:2em;
 -webkit-column-width: 200px;
 -webkit-column-count: 4 ;
 -webkit-column-gap: 30px ;
--webkit-column-rule:4px </code></pre><p><img src="/" alt="分栏" class="lazyload" data-src="http://i2.bvimg.com/684029/da7d901a58cb386fs.png"></p>
+-webkit-column-rule:4px </code></pre><p><img src="/" alt="分栏" class="lazyload" data-src="http://q7j1vi545.bkt.clouddn.com/%E6%8D%95%E8%8E%B78.PNG"></p>
 <h1 id="transition-过度"><a href="#transition-过度" class="headerlink" title="transition 过度"></a>transition 过度</h1><p>运动时间 <code>transition-duration</code></p>
 <p>延迟时间 <code>transition-delay</code></p>
 <p>运动形式 </p>
